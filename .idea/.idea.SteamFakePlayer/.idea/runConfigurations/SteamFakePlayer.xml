@@ -1,0 +1,25 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="SteamFakePlayer" type="DotNetProject" factoryName=".NET Project">
+    <option name="EXE_PATH" value="$PROJECT_DIR$/build/netcoreapp2.1/SteamFakePlayer.dll" />
+    <option name="PROGRAM_PARAMETERS" value="&quot;supermexanik2&quot; &quot;samsung1987871&quot; &quot;h-z-c.ru&quot; &quot;30000&quot; &quot;-hide&quot;" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SteamFakePlayer" />
+    <option name="PASS_PARENT_ENVS" value="1" />
+    <envs>
+      <env name="ASPNETCORE_ENVIRONMENT" value="Development" />
+      <env name="ASPNETCORE_URLS" value="http://localhost:5000" />
+    </envs>
+    <option name="USE_EXTERNAL_CONSOLE" value="0" />
+    <option name="USE_MONO" value="0" />
+    <option name="RUNTIME_ARGUMENTS" value="" />
+    <option name="PROJECT_PATH" value="$PROJECT_DIR$/SteamFakePlayer/SteamFakePlayer.csproj" />
+    <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+    <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+    <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+    <option name="PROJECT_KIND" value="DotNetCore" />
+    <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.1" />
+    <browser url="http://localhost:5000" />
+    <method v="2">
+      <option name="Build" enabled="true" />
+    </method>
+  </configuration>
+</component>

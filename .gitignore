@@ -1,0 +1,15 @@
+build
+temp
+
+# generated
+obj
+bin
+
+# Visual Studio
+.vs
+
+# idea
+.idea/**/workspace.xml
+.idea/**/riderModule.iml
+.idea/**/modules.xml
+.idea/**/contentModel.xml
