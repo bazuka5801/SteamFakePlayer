@@ -10,8 +10,14 @@ namespace SteamFakePlayer.Manager
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, System.EventArgs e)
+        private void btnOpenServer_Click(object sender, System.EventArgs e)
         {
+            if (lbServers.SelectedIndex == -1)
+            {
+                MessageUtils.Error("Ничего не выбрано!");
+                return;
+            }
+
             new ServerForm().Show();
         }
 

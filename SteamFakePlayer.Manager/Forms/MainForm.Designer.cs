@@ -110,7 +110,7 @@
             this.btnOpenServer.TabIndex = 0;
             this.btnOpenServer.Text = "Открыть";
             this.btnOpenServer.UseVisualStyleBackColor = true;
-            this.btnOpenServer.Click += new System.EventHandler(this.button1_Click);
+            this.btnOpenServer.Click += new System.EventHandler(this.btnOpenServer_Click);
             // 
             // gbLicence
             // 
