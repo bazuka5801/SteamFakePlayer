@@ -22,11 +22,7 @@ namespace SteamFakePlayer.Manager
 
         private void btnAddServer_Click(object sender, System.EventArgs e)
         {
-            var model = new AddServerModel();
-            var form = new AddServerForm(model);
-            form.ShowDialog();
-            form.Dispose();
-            if (model.Success)
+            if (AddServerModel.TryGetModel(out var model))
             {
                 lbServers.Items.Add(model.ToString());
             }

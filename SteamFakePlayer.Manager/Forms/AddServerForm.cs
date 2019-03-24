@@ -53,7 +53,7 @@ namespace SteamFakePlayer.Manager
         }
     }
 
-    public class AddServerModel : DialogModel
+    public class AddServerModel : DialogModel<AddServerModel, AddServerForm>
     {
         public string IP;
         public int Port;
