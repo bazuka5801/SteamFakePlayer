@@ -10,11 +10,6 @@ using System.Windows.Forms;
 
 namespace SteamFakePlayer.Manager
 {
-    public class AddServerModel : DialogModel
-    {
-        public string IP;
-        public int Port;
-    }
     public partial class AddServerForm : Form
     {
         private AddServerModel _model;
@@ -30,19 +25,19 @@ namespace SteamFakePlayer.Manager
         {
             if (string.IsNullOrEmpty(tbIP.Text))
             {
-                MessageBox.Show("IP пустой!");
+                MessageUtils.Error("IP пустой!");
                 return;
             }
 
             if (string.IsNullOrEmpty(tbPort.Text))
             {
-                MessageBox.Show("Port пустой!");
+                MessageUtils.Error("Port пустой!");
                 return;
             }
 
             if (int.TryParse(tbPort.Text, out var port) == false)
             {
-                MessageBox.Show("Port не является числом!");
+                MessageUtils.Error("Port не является числом!");
                 return;
             }
 
@@ -55,6 +50,17 @@ namespace SteamFakePlayer.Manager
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+    }
+
+    public class AddServerModel : DialogModel
+    {
+        public string IP;
+        public int Port;
+
+        public override string ToString()
+        {
+            return $"{IP}:{Port}";
         }
     }
 }
