@@ -76,6 +76,7 @@
     <Compile Include="Forms\AddServerForm.Designer.cs">
       <DependentUpon>AddServerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DialogModel.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
