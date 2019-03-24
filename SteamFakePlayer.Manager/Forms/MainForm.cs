@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Windows.Forms;
+using SteamFakePlayer.Manager.Data;
 
 namespace SteamFakePlayer.Manager
 {
@@ -8,6 +9,21 @@ namespace SteamFakePlayer.Manager
         public MainForm()
         {
             InitializeComponent();
+
+            LoadData(DataManager.Data);
+        }
+
+        private void LoadData(ManagerData data)
+        {
+            lbServers.Items.Clear();
+            foreach (var server in data.Servers)
+            {
+                lbServers.Items.Add(
+                    string.IsNullOrEmpty(server.DisplayName)
+                        ? $"{server.IP}:{server.Port}"
+                        : $"{server.DisplayName} [{server.IP}:{server.Port}]"
+                );
+            }
         }
 
         private void btnOpenServer_Click(object sender, System.EventArgs e)
@@ -30,7 +46,13 @@ namespace SteamFakePlayer.Manager
         {
             if (AddServerModel.TryGetModel(out var model))
             {
-                lbServers.Items.Add(model.ToString());
+                DataManager.Data.Servers.Add(new ServerData()
+                {
+                    IP = model.IP,
+                    Port = model.Port
+                });
+                DataManager.Save();
+                LoadData(DataManager.Data);
             }
         }
 
@@ -42,7 +64,12 @@ namespace SteamFakePlayer.Manager
                 return;
             }
 
-            lbServers.Items.RemoveAt(lbServers.SelectedIndex);
+            if (MessageUtils.Confirm($"Вы действительно хотите удалить {lbServers.Items[lbServers.SelectedIndex]}"))
+            {
+                DataManager.Data.Servers.RemoveAt(lbServers.SelectedIndex);
+                DataManager.Save();
+                LoadData(DataManager.Data);
+            }
         }
     }
 }
