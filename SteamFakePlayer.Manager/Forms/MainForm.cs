@@ -33,6 +33,7 @@ namespace SteamFakePlayer.Manager
             if (lbServers.SelectedIndex == -1)
             {
                 MessageUtils.Error("Ничего не выбрано!");
+                return;
             }
 
             lbServers.Items.RemoveAt(lbServers.SelectedIndex);
