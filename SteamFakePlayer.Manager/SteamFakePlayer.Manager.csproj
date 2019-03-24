@@ -77,6 +77,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\BotAccountData.cs" />
+    <Compile Include="Data\DataManager.cs" />
+    <Compile Include="Data\ManagerData.cs" />
+    <Compile Include="Data\ServerData.cs" />
     <Compile Include="Forms\AddServerForm.cs">
       <SubType>Form</SubType>
     </Compile>
