@@ -31,20 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lblInfo = new System.Windows.Forms.Label();
             this.gbServerList = new System.Windows.Forms.GroupBox();
+            this.btnDeleteServer = new System.Windows.Forms.Button();
+            this.btnAddServer = new System.Windows.Forms.Button();
+            this.lbServers = new System.Windows.Forms.ListBox();
+            this.btnOpenServer = new System.Windows.Forms.Button();
             this.gbLicence = new System.Windows.Forms.GroupBox();
-            this.lblKey = new System.Windows.Forms.Label();
-            this.tbKey = new System.Windows.Forms.TextBox();
-            this.btnCopyKey = new System.Windows.Forms.Button();
-            this.lblLicenceStatusCaption = new System.Windows.Forms.Label();
+            this.lblLicenceUsername = new System.Windows.Forms.Label();
+            this.lblLicenceUsernameCaption = new System.Windows.Forms.Label();
             this.lblLicenceStatus = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblLicenceStatusCaption = new System.Windows.Forms.Label();
+            this.btnCopyKey = new System.Windows.Forms.Button();
+            this.tbKey = new System.Windows.Forms.TextBox();
+            this.lblKey = new System.Windows.Forms.Label();
             this.llRustyCode = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbServers = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.lblLicenceUsernameCaption = new System.Windows.Forms.Label();
-            this.lblLicenceUsername = new System.Windows.Forms.Label();
             this.gbServerList.SuspendLayout();
             this.gbLicence.SuspendLayout();
             this.SuspendLayout();
@@ -62,16 +62,55 @@
             // 
             // gbServerList
             // 
-            this.gbServerList.Controls.Add(this.button3);
-            this.gbServerList.Controls.Add(this.button2);
+            this.gbServerList.Controls.Add(this.btnDeleteServer);
+            this.gbServerList.Controls.Add(this.btnAddServer);
             this.gbServerList.Controls.Add(this.lbServers);
-            this.gbServerList.Controls.Add(this.button1);
+            this.gbServerList.Controls.Add(this.btnOpenServer);
             this.gbServerList.Location = new System.Drawing.Point(12, 229);
             this.gbServerList.Name = "gbServerList";
             this.gbServerList.Size = new System.Drawing.Size(382, 213);
             this.gbServerList.TabIndex = 3;
             this.gbServerList.TabStop = false;
             this.gbServerList.Text = "Список серверов";
+            // 
+            // btnDeleteServer
+            // 
+            this.btnDeleteServer.Location = new System.Drawing.Point(274, 180);
+            this.btnDeleteServer.Name = "btnDeleteServer";
+            this.btnDeleteServer.Size = new System.Drawing.Size(102, 26);
+            this.btnDeleteServer.TabIndex = 3;
+            this.btnDeleteServer.Text = "Удалить";
+            this.btnDeleteServer.UseVisualStyleBackColor = true;
+            this.btnDeleteServer.Click += new System.EventHandler(this.btnDeleteServer_Click);
+            // 
+            // btnAddServer
+            // 
+            this.btnAddServer.Location = new System.Drawing.Point(166, 180);
+            this.btnAddServer.Name = "btnAddServer";
+            this.btnAddServer.Size = new System.Drawing.Size(102, 26);
+            this.btnAddServer.TabIndex = 2;
+            this.btnAddServer.Text = "Добавить";
+            this.btnAddServer.UseVisualStyleBackColor = true;
+            this.btnAddServer.Click += new System.EventHandler(this.btnAddServer_Click);
+            // 
+            // lbServers
+            // 
+            this.lbServers.FormattingEnabled = true;
+            this.lbServers.ItemHeight = 18;
+            this.lbServers.Location = new System.Drawing.Point(9, 26);
+            this.lbServers.Name = "lbServers";
+            this.lbServers.Size = new System.Drawing.Size(367, 148);
+            this.lbServers.TabIndex = 1;
+            // 
+            // btnOpenServer
+            // 
+            this.btnOpenServer.Location = new System.Drawing.Point(9, 180);
+            this.btnOpenServer.Name = "btnOpenServer";
+            this.btnOpenServer.Size = new System.Drawing.Size(102, 26);
+            this.btnOpenServer.TabIndex = 0;
+            this.btnOpenServer.Text = "Открыть";
+            this.btnOpenServer.UseVisualStyleBackColor = true;
+            this.btnOpenServer.Click += new System.EventHandler(this.button1_Click);
             // 
             // gbLicence
             // 
@@ -89,44 +128,25 @@
             this.gbLicence.TabStop = false;
             this.gbLicence.Text = "Лицензия";
             // 
-            // lblKey
+            // lblLicenceUsername
             // 
-            this.lblKey.AutoSize = true;
-            this.lblKey.Font = new System.Drawing.Font("Verdana", 9F);
-            this.lblKey.Location = new System.Drawing.Point(6, 28);
-            this.lblKey.Name = "lblKey";
-            this.lblKey.Size = new System.Drawing.Size(30, 14);
-            this.lblKey.TabIndex = 0;
-            this.lblKey.Text = "Key";
+            this.lblLicenceUsername.AutoSize = true;
+            this.lblLicenceUsername.Font = new System.Drawing.Font("Verdana", 9F);
+            this.lblLicenceUsername.Location = new System.Drawing.Point(78, 76);
+            this.lblLicenceUsername.Name = "lblLicenceUsername";
+            this.lblLicenceUsername.Size = new System.Drawing.Size(19, 14);
+            this.lblLicenceUsername.TabIndex = 6;
+            this.lblLicenceUsername.Text = "...";
             // 
-            // tbKey
+            // lblLicenceUsernameCaption
             // 
-            this.tbKey.Font = new System.Drawing.Font("Verdana", 9F);
-            this.tbKey.Location = new System.Drawing.Point(42, 24);
-            this.tbKey.Name = "tbKey";
-            this.tbKey.ReadOnly = true;
-            this.tbKey.Size = new System.Drawing.Size(277, 22);
-            this.tbKey.TabIndex = 1;
-            // 
-            // btnCopyKey
-            // 
-            this.btnCopyKey.Font = new System.Drawing.Font("Verdana", 9F);
-            this.btnCopyKey.Location = new System.Drawing.Point(325, 23);
-            this.btnCopyKey.Name = "btnCopyKey";
-            this.btnCopyKey.Size = new System.Drawing.Size(51, 23);
-            this.btnCopyKey.TabIndex = 2;
-            this.btnCopyKey.Text = "Copy";
-            this.btnCopyKey.UseVisualStyleBackColor = true;
-            // 
-            // lblLicenceStatusCaption
-            // 
-            this.lblLicenceStatusCaption.AutoSize = true;
-            this.lblLicenceStatusCaption.Font = new System.Drawing.Font("Verdana", 9F);
-            this.lblLicenceStatusCaption.Location = new System.Drawing.Point(6, 52);
-            this.lblLicenceStatusCaption.Name = "lblLicenceStatusCaption";
-            this.lblLicenceStatusCaption.Size = new System.Drawing.Size(53, 14);
-            this.lblLicenceStatusCaption.TabIndex = 3;
-            this.lblLicenceStatusCaption.Text = "Status:";
+            this.lblLicenceUsernameCaption.AutoSize = true;
+            this.lblLicenceUsernameCaption.Font = new System.Drawing.Font("Verdana", 9F);
+            this.lblLicenceUsernameCaption.Location = new System.Drawing.Point(6, 76);
+            this.lblLicenceUsernameCaption.Name = "lblLicenceUsernameCaption";
+            this.lblLicenceUsernameCaption.Size = new System.Drawing.Size(76, 14);
+            this.lblLicenceUsernameCaption.TabIndex = 5;
+            this.lblLicenceUsernameCaption.Text = "Username:";
             // 
             // lblLicenceStatus
             // 
@@ -138,15 +158,44 @@
             this.lblLicenceStatus.TabIndex = 4;
             this.lblLicenceStatus.Text = "...";
             // 
-            // button1
+            // lblLicenceStatusCaption
             // 
-            this.button1.Location = new System.Drawing.Point(9, 180);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 26);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Открыть";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.lblLicenceStatusCaption.AutoSize = true;
+            this.lblLicenceStatusCaption.Font = new System.Drawing.Font("Verdana", 9F);
+            this.lblLicenceStatusCaption.Location = new System.Drawing.Point(6, 52);
+            this.lblLicenceStatusCaption.Name = "lblLicenceStatusCaption";
+            this.lblLicenceStatusCaption.Size = new System.Drawing.Size(53, 14);
+            this.lblLicenceStatusCaption.TabIndex = 3;
+            this.lblLicenceStatusCaption.Text = "Status:";
+            // 
+            // btnCopyKey
+            // 
+            this.btnCopyKey.Font = new System.Drawing.Font("Verdana", 9F);
+            this.btnCopyKey.Location = new System.Drawing.Point(325, 23);
+            this.btnCopyKey.Name = "btnCopyKey";
+            this.btnCopyKey.Size = new System.Drawing.Size(51, 23);
+            this.btnCopyKey.TabIndex = 2;
+            this.btnCopyKey.Text = "Copy";
+            this.btnCopyKey.UseVisualStyleBackColor = true;
+            // 
+            // tbKey
+            // 
+            this.tbKey.Font = new System.Drawing.Font("Verdana", 9F);
+            this.tbKey.Location = new System.Drawing.Point(42, 24);
+            this.tbKey.Name = "tbKey";
+            this.tbKey.ReadOnly = true;
+            this.tbKey.Size = new System.Drawing.Size(277, 22);
+            this.tbKey.TabIndex = 1;
+            // 
+            // lblKey
+            // 
+            this.lblKey.AutoSize = true;
+            this.lblKey.Font = new System.Drawing.Font("Verdana", 9F);
+            this.lblKey.Location = new System.Drawing.Point(6, 28);
+            this.lblKey.Name = "lblKey";
+            this.lblKey.Size = new System.Drawing.Size(30, 14);
+            this.lblKey.TabIndex = 0;
+            this.lblKey.Text = "Key";
             // 
             // llRustyCode
             // 
@@ -168,53 +217,6 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Оплата и приватные плагины на Rust";
             // 
-            // lbServers
-            // 
-            this.lbServers.FormattingEnabled = true;
-            this.lbServers.ItemHeight = 18;
-            this.lbServers.Location = new System.Drawing.Point(9, 26);
-            this.lbServers.Name = "lbServers";
-            this.lbServers.Size = new System.Drawing.Size(367, 148);
-            this.lbServers.TabIndex = 1;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(166, 180);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(102, 26);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Добавить";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(274, 180);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(102, 26);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Удалить";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // lblLicenceUsernameCaption
-            // 
-            this.lblLicenceUsernameCaption.AutoSize = true;
-            this.lblLicenceUsernameCaption.Font = new System.Drawing.Font("Verdana", 9F);
-            this.lblLicenceUsernameCaption.Location = new System.Drawing.Point(6, 76);
-            this.lblLicenceUsernameCaption.Name = "lblLicenceUsernameCaption";
-            this.lblLicenceUsernameCaption.Size = new System.Drawing.Size(76, 14);
-            this.lblLicenceUsernameCaption.TabIndex = 5;
-            this.lblLicenceUsernameCaption.Text = "Username:";
-            // 
-            // lblLicenceUsername
-            // 
-            this.lblLicenceUsername.AutoSize = true;
-            this.lblLicenceUsername.Font = new System.Drawing.Font("Verdana", 9F);
-            this.lblLicenceUsername.Location = new System.Drawing.Point(78, 76);
-            this.lblLicenceUsername.Name = "lblLicenceUsername";
-            this.lblLicenceUsername.Size = new System.Drawing.Size(19, 14);
-            this.lblLicenceUsername.TabIndex = 6;
-            this.lblLicenceUsername.Text = "...";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -232,6 +234,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SteamFakePlayer by bazuka5801";
             this.gbServerList.ResumeLayout(false);
             this.gbLicence.ResumeLayout(false);
@@ -251,11 +254,11 @@
         private System.Windows.Forms.Button btnCopyKey;
         private System.Windows.Forms.TextBox tbKey;
         private System.Windows.Forms.Label lblKey;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnOpenServer;
         private System.Windows.Forms.LinkLabel llRustyCode;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnDeleteServer;
+        private System.Windows.Forms.Button btnAddServer;
         private System.Windows.Forms.ListBox lbServers;
         private System.Windows.Forms.Label lblLicenceUsername;
         private System.Windows.Forms.Label lblLicenceUsernameCaption;

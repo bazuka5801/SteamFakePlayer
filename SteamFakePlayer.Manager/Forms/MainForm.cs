@@ -19,5 +19,27 @@ namespace SteamFakePlayer.Manager
         {
             Process.Start("https://vk.com/rustycode");
         }
+
+        private void btnAddServer_Click(object sender, System.EventArgs e)
+        {
+            var model = new AddServerModel();
+            var form = new AddServerForm(model);
+            form.ShowDialog();
+            form.Dispose();
+            if (model.Success)
+            {
+                lbServers.Items.Add(model.ToString());
+            }
+        }
+
+        private void btnDeleteServer_Click(object sender, System.EventArgs e)
+        {
+            if (lbServers.SelectedIndex == -1)
+            {
+                MessageUtils.Error("Ничего не выбрано!");
+            }
+
+            lbServers.Items.RemoveAt(lbServers.SelectedIndex);
+        }
     }
 }
