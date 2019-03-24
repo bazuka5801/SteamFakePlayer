@@ -95,6 +95,7 @@
       <DependentUpon>ServerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="System\Forms\DialogModel.cs" />
+    <Compile Include="System\Forms\MessageUtils.cs" />
     <EmbeddedResource Include="Forms\AddServerForm.resx">
       <DependentUpon>AddServerForm.cs</DependentUpon>
     </EmbeddedResource>
