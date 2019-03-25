@@ -39,8 +39,10 @@
             this.lblLoaded = new System.Windows.Forms.Label();
             this.lblLoadedCaption = new System.Windows.Forms.Label();
             this.gbAdministration = new System.Windows.Forms.GroupBox();
+            this.btnCheckServerAvailable = new System.Windows.Forms.Button();
             this.gbPlayers.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.gbAdministration.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbPlayers
@@ -146,12 +148,24 @@
             // 
             // gbAdministration
             // 
+            this.gbAdministration.Controls.Add(this.btnCheckServerAvailable);
             this.gbAdministration.Location = new System.Drawing.Point(310, 197);
             this.gbAdministration.Name = "gbAdministration";
             this.gbAdministration.Size = new System.Drawing.Size(348, 172);
             this.gbAdministration.TabIndex = 5;
             this.gbAdministration.TabStop = false;
             this.gbAdministration.Text = "Управление";
+            // 
+            // btnCheckServerAvailable
+            // 
+            this.btnCheckServerAvailable.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnCheckServerAvailable.Location = new System.Drawing.Point(9, 26);
+            this.btnCheckServerAvailable.Name = "btnCheckServerAvailable";
+            this.btnCheckServerAvailable.Size = new System.Drawing.Size(333, 38);
+            this.btnCheckServerAvailable.TabIndex = 0;
+            this.btnCheckServerAvailable.Text = "Проверить доступность сервера";
+            this.btnCheckServerAvailable.UseVisualStyleBackColor = true;
+            this.btnCheckServerAvailable.Click += new System.EventHandler(this.btnCheckServerAvailable_Click);
             // 
             // ServerForm
             // 
@@ -172,6 +186,7 @@
             this.gbPlayers.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gbAdministration.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -188,5 +203,6 @@
         private System.Windows.Forms.Label lblLoadedCaption;
         private System.Windows.Forms.GroupBox gbAdministration;
         private System.Windows.Forms.Button btnLoadAccountsFile;
+        private System.Windows.Forms.Button btnCheckServerAvailable;
     }
 }

@@ -1,4 +1,5 @@
-﻿using SteamFakePlayer.Manager.Data;
+﻿using SteamFakePlayer.Manager.Core;
+using SteamFakePlayer.Manager.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -74,6 +75,17 @@ namespace SteamFakePlayer.Manager
                     }
                 }
             }
+        }
+
+        private void btnCheckServerAvailable_Click(object sender, EventArgs e)
+        {
+            if (_serverData.Bots.Count == 0)
+            {
+                MessageUtils.Error("Нет аккаунта для проверки сервера!");
+                return;
+            }
+
+            new PlayerJoiner(_serverData.Bots[0], _serverData).Join();
         }
     }
 }
