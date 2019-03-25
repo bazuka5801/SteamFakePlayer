@@ -14,7 +14,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
     <PackageReference Include="Sentry" Version="1.1.2" />
     <PackageReference Include="SteamKit2" Version="2.2.0-Beta.1" />
   </ItemGroup>
@@ -28,13 +27,7 @@
   </ItemGroup>
 
   <Target Name="ILRepack" AfterTargets="Build" Condition=" '$(Configuration)' == 'Release' ">
-
-    <PropertyGroup>
-      <WorkingDirectory>$(OutputPath)</WorkingDirectory>
-    </PropertyGroup>
-
-    <ILRepack OutputType="$(OutputType)" MainAssembly="$(AssemblyName).dll" OutputAssembly="$(BuildPath)\$(AssemblyName).dll" InputAssemblies="$(WorkingDirectory)\*.dll" WilcardInputAssemblies="true" Internalize="true" ZeroPeKind="true" WorkingDirectory="$(WorkingDirectory)" />
-
+    <!--TODO: Add .NET Reactor-->
   </Target>
 
 </Project>
