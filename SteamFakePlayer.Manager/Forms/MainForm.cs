@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using SteamFakePlayer.Manager.Data;
 
@@ -8,6 +10,8 @@ namespace SteamFakePlayer.Manager
     {
         public MainForm()
         {
+            CheckJoinerFile();
+
             InitializeComponent();
 
             LoadData(DataManager.Data);
@@ -71,6 +75,31 @@ namespace SteamFakePlayer.Manager
                 DataManager.Data.Servers.RemoveAt(lbServers.SelectedIndex);
                 DataManager.Save();
                 LoadData(DataManager.Data);
+            }
+        }
+
+        private void CheckJoinerFile()
+        {
+            var joinerFile = DataManager.Data.JoinerFile;
+            if (string.IsNullOrEmpty(joinerFile) || File.Exists(joinerFile) == false)
+            {
+                MessageUtils.Info("Выберите файл SteamFakePlayer.exe");
+                using (var fileDialog = new OpenFileDialog())
+                {
+                    fileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    fileDialog.Filter = "exe files (*.exe) | *.exe";
+
+                    if (fileDialog.ShowDialog() != DialogResult.OK)
+                    {
+                        Process.GetCurrentProcess().Kill();
+                        return;
+                    }
+
+                    DataManager.Data.JoinerFile = fileDialog.FileName;
+                    DataManager.Save();
+
+                    MessageUtils.Info("Расположение файла успешно сохранено!");
+                }
             }
         }
     }
