@@ -14,5 +14,10 @@ namespace SteamFakePlayer.Manager
             return DialogResult.Yes == MessageBox.Show(text, "Вы уверены?",
                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
         }
+
+        public static void Info(string text)
+        {
+            MessageBox.Show(text, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+        }
     }
 }
