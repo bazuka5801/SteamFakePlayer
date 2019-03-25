@@ -30,22 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerForm));
             this.gbPlayers = new System.Windows.Forms.GroupBox();
+            this.btnLoadAccountsFile = new System.Windows.Forms.Button();
+            this.cbShowAccounts = new System.Windows.Forms.CheckBox();
             this.tbAccounts = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblLoadedCaption = new System.Windows.Forms.Label();
-            this.lblLoaded = new System.Windows.Forms.Label();
             this.lblActiveBots = new System.Windows.Forms.Label();
             this.lblActiveBotsCaption = new System.Windows.Forms.Label();
+            this.lblLoaded = new System.Windows.Forms.Label();
+            this.lblLoadedCaption = new System.Windows.Forms.Label();
             this.gbAdministration = new System.Windows.Forms.GroupBox();
-            this.cbShowAccounts = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.gbPlayers.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbPlayers
             // 
-            this.gbPlayers.Controls.Add(this.button4);
+            this.gbPlayers.Controls.Add(this.btnLoadAccountsFile);
             this.gbPlayers.Controls.Add(this.cbShowAccounts);
             this.gbPlayers.Controls.Add(this.tbAccounts);
             this.gbPlayers.Location = new System.Drawing.Point(14, 13);
@@ -56,6 +56,27 @@
             this.gbPlayers.TabIndex = 3;
             this.gbPlayers.TabStop = false;
             this.gbPlayers.Text = "Список аккаунтов (login:pass)";
+            // 
+            // btnLoadAccountsFile
+            // 
+            this.btnLoadAccountsFile.Location = new System.Drawing.Point(10, 323);
+            this.btnLoadAccountsFile.Name = "btnLoadAccountsFile";
+            this.btnLoadAccountsFile.Size = new System.Drawing.Size(265, 26);
+            this.btnLoadAccountsFile.TabIndex = 3;
+            this.btnLoadAccountsFile.Text = "Загрузить файл";
+            this.btnLoadAccountsFile.UseVisualStyleBackColor = true;
+            this.btnLoadAccountsFile.Click += new System.EventHandler(this.btnLoadAccountsFile_Click);
+            // 
+            // cbShowAccounts
+            // 
+            this.cbShowAccounts.AutoSize = true;
+            this.cbShowAccounts.Location = new System.Drawing.Point(10, 22);
+            this.cbShowAccounts.Name = "cbShowAccounts";
+            this.cbShowAccounts.Size = new System.Drawing.Size(103, 22);
+            this.cbShowAccounts.TabIndex = 2;
+            this.cbShowAccounts.Text = "Показать";
+            this.cbShowAccounts.UseVisualStyleBackColor = true;
+            this.cbShowAccounts.CheckedChanged += new System.EventHandler(this.cbShowAccounts_CheckedChanged);
             // 
             // tbAccounts
             // 
@@ -87,24 +108,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Показатели";
             // 
-            // lblLoadedCaption
-            // 
-            this.lblLoadedCaption.AutoSize = true;
-            this.lblLoadedCaption.Location = new System.Drawing.Point(6, 32);
-            this.lblLoadedCaption.Name = "lblLoadedCaption";
-            this.lblLoadedCaption.Size = new System.Drawing.Size(195, 18);
-            this.lblLoadedCaption.TabIndex = 0;
-            this.lblLoadedCaption.Text = "Загружено аккаунтов:";
-            // 
-            // lblLoaded
-            // 
-            this.lblLoaded.AutoSize = true;
-            this.lblLoaded.Location = new System.Drawing.Point(195, 32);
-            this.lblLoaded.Name = "lblLoaded";
-            this.lblLoaded.Size = new System.Drawing.Size(18, 18);
-            this.lblLoaded.TabIndex = 1;
-            this.lblLoaded.Text = "0";
-            // 
             // lblActiveBots
             // 
             this.lblActiveBots.AutoSize = true;
@@ -123,6 +126,24 @@
             this.lblActiveBotsCaption.TabIndex = 2;
             this.lblActiveBotsCaption.Text = "Ботов на сервере:";
             // 
+            // lblLoaded
+            // 
+            this.lblLoaded.AutoSize = true;
+            this.lblLoaded.Location = new System.Drawing.Point(195, 32);
+            this.lblLoaded.Name = "lblLoaded";
+            this.lblLoaded.Size = new System.Drawing.Size(18, 18);
+            this.lblLoaded.TabIndex = 1;
+            this.lblLoaded.Text = "0";
+            // 
+            // lblLoadedCaption
+            // 
+            this.lblLoadedCaption.AutoSize = true;
+            this.lblLoadedCaption.Location = new System.Drawing.Point(6, 32);
+            this.lblLoadedCaption.Name = "lblLoadedCaption";
+            this.lblLoadedCaption.Size = new System.Drawing.Size(195, 18);
+            this.lblLoadedCaption.TabIndex = 0;
+            this.lblLoadedCaption.Text = "Загружено аккаунтов:";
+            // 
             // gbAdministration
             // 
             this.gbAdministration.Location = new System.Drawing.Point(310, 197);
@@ -131,26 +152,6 @@
             this.gbAdministration.TabIndex = 5;
             this.gbAdministration.TabStop = false;
             this.gbAdministration.Text = "Управление";
-            // 
-            // cbShowAccounts
-            // 
-            this.cbShowAccounts.AutoSize = true;
-            this.cbShowAccounts.Location = new System.Drawing.Point(10, 22);
-            this.cbShowAccounts.Name = "cbShowAccounts";
-            this.cbShowAccounts.Size = new System.Drawing.Size(103, 22);
-            this.cbShowAccounts.TabIndex = 2;
-            this.cbShowAccounts.Text = "Показать";
-            this.cbShowAccounts.UseVisualStyleBackColor = true;
-            this.cbShowAccounts.CheckedChanged += new System.EventHandler(this.cbShowAccounts_CheckedChanged);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(10, 323);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(265, 26);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Загрузить файл";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // ServerForm
             // 
@@ -186,6 +187,6 @@
         private System.Windows.Forms.Label lblLoaded;
         private System.Windows.Forms.Label lblLoadedCaption;
         private System.Windows.Forms.GroupBox gbAdministration;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnLoadAccountsFile;
     }
 }
