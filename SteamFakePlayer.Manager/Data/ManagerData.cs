@@ -11,5 +11,8 @@ namespace SteamFakePlayer.Manager.Data
 
         [ProtoMember(2)]
         public List<ServerData> Servers = new List<ServerData>();
+
+        [ProtoMember(3)]
+        public string JoinerFile;
     }
 }
