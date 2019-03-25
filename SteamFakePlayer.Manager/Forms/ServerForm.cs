@@ -14,9 +14,15 @@ namespace SteamFakePlayer.Manager
 {
     public partial class ServerForm : Form
     {
-        public ServerForm()
+        private ServerData _serverData;
+
+        public ServerForm(ServerData serverdata)
         {
+            _serverData = serverdata;
+
             InitializeComponent();
+
+            LoadData(serverdata);
         }
 
         private void LoadData(ServerData serverData)

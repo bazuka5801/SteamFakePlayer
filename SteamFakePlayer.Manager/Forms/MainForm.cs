@@ -28,13 +28,15 @@ namespace SteamFakePlayer.Manager
 
         private void btnOpenServer_Click(object sender, System.EventArgs e)
         {
-            if (lbServers.SelectedIndex == -1)
+            int index = lbServers.SelectedIndex;
+            if (index == -1)
             {
                 MessageUtils.Error("Ничего не выбрано!");
                 return;
             }
 
-            new ServerForm().Show();
+            ServerData serverData = DataManager.Data.Servers[index];
+            new ServerForm(serverData).Show();
         }
 
         private void llRustyCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
