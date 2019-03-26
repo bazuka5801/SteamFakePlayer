@@ -66,9 +66,10 @@ namespace SteamFakePlayer.Manager.Core
             return $"\"{_account.Username}\" " +
                    $"\"{_account.Password}\" " +
                    $"\"{_server.IP}\" " +
-                   $"\"{_server.Port}\" \" \""
+                   $"\"{_server.Port}\" \" \" " +
+                   $"\"-pid\" \"{Process.GetCurrentProcess().Id}\" "
 #if !DEBUG
-                   + $"\"-hide\""
+                   + $"\"-hide\" "
 #endif
                 ;
         }
