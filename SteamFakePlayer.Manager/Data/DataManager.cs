@@ -24,16 +24,9 @@ namespace SteamFakePlayer.Manager.Data
                     return _data = new ManagerData();
                 }
 
-                try
+                using (var stream = File.OpenRead(_file))
                 {
-                    using (var stream = File.OpenRead(_file))
-                    {
-                        return _data = Serializer.Deserialize<ManagerData>(stream);
-                    }
-                }
-                catch (ProtoException)
-                {
-                    return _data = new ManagerData();
+                    return _data = Serializer.Deserialize<ManagerData>(stream);
                 }
             }
         }
@@ -47,6 +40,7 @@ namespace SteamFakePlayer.Manager.Data
         {
             if (Data != null)
             {
+                File.Delete(_file);
                 using (var stream = new FileStream(_file, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
                 {
                     Serializer.Serialize(stream, Data);
