@@ -84,22 +84,32 @@ namespace SteamFakePlayer.Manager
             if (string.IsNullOrEmpty(joinerFile) || File.Exists(joinerFile) == false)
             {
                 MessageUtils.Info("Выберите файл SteamFakePlayer.exe");
-                using (var fileDialog = new OpenFileDialog())
+                SelectJoinerPath();
+            }
+        }
+
+        private void menuStripSettingsJoinerPath_Click(object sender, EventArgs e)
+        {
+            SelectJoinerPath();
+        }
+
+        private void SelectJoinerPath()
+        {
+            using (var fileDialog = new OpenFileDialog())
+            {
+                fileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                fileDialog.Filter = "exe files (*.exe) | *.exe";
+
+                if (fileDialog.ShowDialog() != DialogResult.OK)
                 {
-                    fileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                    fileDialog.Filter = "exe files (*.exe) | *.exe";
-
-                    if (fileDialog.ShowDialog() != DialogResult.OK)
-                    {
-                        Process.GetCurrentProcess().Kill();
-                        return;
-                    }
-
-                    DataManager.Data.JoinerFile = fileDialog.FileName;
-                    DataManager.Save();
-
-                    MessageUtils.Info("Расположение файла успешно сохранено!");
+                    Process.GetCurrentProcess().Kill();
+                    return;
                 }
+
+                DataManager.Data.JoinerFile = fileDialog.FileName;
+                DataManager.Save();
+
+                MessageUtils.Info("Расположение файла успешно сохранено!");
             }
         }
     }

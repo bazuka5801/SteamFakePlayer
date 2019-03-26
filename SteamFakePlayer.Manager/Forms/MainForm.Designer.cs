@@ -45,15 +45,20 @@
             this.lblKey = new System.Windows.Forms.Label();
             this.llRustyCode = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.menuStripFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStripSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStripSettingsJoinerPath = new System.Windows.Forms.ToolStripMenuItem();
             this.gbServerList.SuspendLayout();
             this.gbLicence.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblInfo
             // 
             this.lblInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblInfo.Location = new System.Drawing.Point(18, 12);
+            this.lblInfo.Location = new System.Drawing.Point(18, 24);
             this.lblInfo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(375, 41);
@@ -200,7 +205,7 @@
             // llRustyCode
             // 
             this.llRustyCode.AutoSize = true;
-            this.llRustyCode.Location = new System.Drawing.Point(18, 80);
+            this.llRustyCode.Location = new System.Drawing.Point(18, 83);
             this.llRustyCode.Name = "llRustyCode";
             this.llRustyCode.Size = new System.Drawing.Size(151, 18);
             this.llRustyCode.TabIndex = 5;
@@ -211,11 +216,43 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 62);
+            this.label1.Location = new System.Drawing.Point(18, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(324, 18);
             this.label1.TabIndex = 6;
             this.label1.Text = "Оплата и приватные плагины на Rust";
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStripFile,
+            this.menuStripSettings});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(407, 24);
+            this.menuStrip.TabIndex = 7;
+            this.menuStrip.Text = "menuStrip1";
+            // 
+            // menuStripFile
+            // 
+            this.menuStripFile.Name = "menuStripFile";
+            this.menuStripFile.Size = new System.Drawing.Size(48, 20);
+            this.menuStripFile.Text = "Файл";
+            // 
+            // menuStripSettings
+            // 
+            this.menuStripSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStripSettingsJoinerPath});
+            this.menuStripSettings.Name = "menuStripSettings";
+            this.menuStripSettings.Size = new System.Drawing.Size(79, 20);
+            this.menuStripSettings.Text = "Настройки";
+            // 
+            // menuStripSettingsJoinerPath
+            // 
+            this.menuStripSettingsJoinerPath.Name = "menuStripSettingsJoinerPath";
+            this.menuStripSettingsJoinerPath.Size = new System.Drawing.Size(192, 22);
+            this.menuStripSettingsJoinerPath.Text = "Указать путь до Joiner";
+            this.menuStripSettingsJoinerPath.Click += new System.EventHandler(this.menuStripSettingsJoinerPath_Click);
             // 
             // MainForm
             // 
@@ -227,9 +264,11 @@
             this.Controls.Add(this.gbLicence);
             this.Controls.Add(this.gbServerList);
             this.Controls.Add(this.lblInfo);
+            this.Controls.Add(this.menuStrip);
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -239,6 +278,8 @@
             this.gbServerList.ResumeLayout(false);
             this.gbLicence.ResumeLayout(false);
             this.gbLicence.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,6 +303,10 @@
         private System.Windows.Forms.ListBox lbServers;
         private System.Windows.Forms.Label lblLicenceUsername;
         private System.Windows.Forms.Label lblLicenceUsernameCaption;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem menuStripFile;
+        private System.Windows.Forms.ToolStripMenuItem menuStripSettings;
+        private System.Windows.Forms.ToolStripMenuItem menuStripSettingsJoinerPath;
     }
 }
 
