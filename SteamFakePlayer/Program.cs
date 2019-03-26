@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using SapphireEngine;
 using Sentry;
@@ -12,6 +13,7 @@ namespace SteamFakePlayer
         private static string _password;
         private static string _ip;
         private static int _port;
+        private static bool _quitAfterConnected;
 
         public override void OnAwake()
         {
@@ -22,7 +24,7 @@ namespace SteamFakePlayer
                 {
                     try
                     {
-                        new SteamPlayer(_username, _password, _ip, _port).Connect();
+                        new SteamPlayer(_username, _password, _ip, _port, _quitAfterConnected).Connect();
                     }
                     catch (Exception e)
                     {
@@ -47,6 +49,10 @@ namespace SteamFakePlayer
                 if (args[4] == "-hide")
                 {
                     ConsoleView.Hide();
+                }
+                if (args.Contains("-quit-after-connected"))
+                {
+                    _quitAfterConnected = true;
                 }
 
                 Framework.Initialization<Program>();

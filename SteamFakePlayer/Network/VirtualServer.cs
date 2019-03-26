@@ -16,6 +16,7 @@ namespace SteamFakePlayer.Network
         private ulong _steamId;
         private byte[] _token;
         private string _username;
+        private bool _quitAfterConnected;
         public RakNet.Client BaseClient;
 
         public UserInformation ConnectionInformation { get; private set; }
@@ -27,11 +28,12 @@ namespace SteamFakePlayer.Network
             ConsoleSystem.Log("[VirtualServer]: Все службы готовы к работе!");
         }
 
-        public void Init(ulong steamid, string username, byte[] token)
+        public void Init(ulong steamid, string username, byte[] token, bool quitAfterConnected)
         {
             _steamId = steamid;
             _username = username;
             _token = token;
+            _quitAfterConnected = quitAfterConnected;
         }
 
         public override void OnUpdate()
@@ -193,6 +195,11 @@ namespace SteamFakePlayer.Network
                         $"[VirtualServer]: Подключились к: {(approval.official ? "[Oficial] " : "")}" +
                         approval.hostname);
 
+                    if (_quitAfterConnected)
+                    {
+                        BaseClient.Disconnect("", true);
+                        Framework.Quit();
+                    }
                     BaseClient.Connection.encryptionLevel = approval.encryption;
                     BaseClient.Connection.decryptIncoming = true;
 

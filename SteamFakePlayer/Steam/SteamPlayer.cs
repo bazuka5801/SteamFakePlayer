@@ -48,6 +48,7 @@ namespace SteamFakePlayer
         private bool _isRunning;
         private CallbackManager _manager;
         private readonly int _port;
+        private readonly bool _quitAfterConnected;
 
         private IPAddress _publicIp;
         private SteamApps _steamApps;
@@ -65,12 +66,13 @@ namespace SteamFakePlayer
 
         public uint TicketRequestCount;
 
-        public SteamPlayer(string user, string password, string ip, int port)
+        public SteamPlayer(string user, string password, string ip, int port, bool quitAfterConnected)
         {
             _user = user;
             _password = password;
             _ip = ip;
             _port = port;
+            _quitAfterConnected = quitAfterConnected;
         }
 
 
@@ -151,7 +153,7 @@ namespace SteamFakePlayer
             Framework.RunToMainThread(o =>
             {
                 var server = Framework.Bootstraper.AddType<VirtualServer>();
-                server.Init(_steamUser.SteamID.ConvertToUInt64(), _username, bytes.Ticket);
+                server.Init(_steamUser.SteamID.ConvertToUInt64(), _username, bytes.Ticket, _quitAfterConnected);
                 server.Connect(_ip, _port);
             }, null);
         }
