@@ -21,13 +21,5 @@
   <ItemGroup>
     <Reference Include="..\Dependencies\*\*.dll" />
   </ItemGroup>
-  
-  <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
-    <Content Include="..\ResolvingAssemblies\*.dll" CopyToOutputDirectory="true" />
-  </ItemGroup>
-
-  <Target Name="ILRepack" AfterTargets="Build" Condition=" '$(Configuration)' == 'Release' ">
-    <!--TODO: Add .NET Reactor-->
-  </Target>
 
 </Project>
