@@ -24,9 +24,16 @@ namespace SteamFakePlayer.Manager.Data
                     return _data = new ManagerData();
                 }
 
-                using (var stream = File.OpenRead(_file))
+                try
                 {
-                    return _data = Serializer.Deserialize<ManagerData>(stream);
+                    using (var stream = File.OpenRead(_file))
+                    {
+                        return _data = Serializer.Deserialize<ManagerData>(stream);
+                    }
+                }
+                catch (ProtoException)
+                {
+                    return _data = new ManagerData();
                 }
             }
         }
