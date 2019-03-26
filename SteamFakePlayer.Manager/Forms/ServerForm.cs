@@ -1,14 +1,11 @@
 ﻿using SteamFakePlayer.Manager.Core;
 using SteamFakePlayer.Manager.Data;
+using SteamFakePlayer.Manager.Extensions;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SteamFakePlayer.Manager
@@ -16,19 +13,35 @@ namespace SteamFakePlayer.Manager
     public partial class ServerForm : Form
     {
         private ServerData _serverData;
+        private ServerCore _serverCore;
+        private bool _validated;        
 
         public ServerForm(ServerData serverdata)
         {
             _serverData = serverdata;
+            _serverCore = new ServerCore(serverdata);
+            _serverCore.StatsChanged += OnServerStatsChanged;
 
             InitializeComponent();
 
             LoadData(serverdata);
         }
 
+        private void OnServerStatsChanged(ServerStats stats)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((Action)(() => OnServerStatsChanged(stats)));
+                return;
+            }
+            lblActiveBots.Text = stats.ActiveBotsCount.ToString();
+        }
+
         private void LoadData(ServerData serverData)
         {
             tbAccounts.Lines = serverData.Bots.Select(p => $"{p.Username}:{p.Password}").ToArray();
+
+            lblLoaded.Text = _serverData.Bots.Count.ToString();
         }
 
         private void cbShowAccounts_CheckedChanged(object sender, EventArgs e)
@@ -85,7 +98,45 @@ namespace SteamFakePlayer.Manager
                 return;
             }
 
-            new PlayerJoiner(_serverData.Bots[0], _serverData).Join();
+            var checker = new ServerChecker(_serverData.Bots[0], _serverData);
+            checker.Callback += OnServerValidatingResult;
+            checker.Join();
+        }
+
+        private void OnServerValidatingResult(bool success, string data)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((Action)(()=> { OnServerValidatingResult(success, data); }));
+                return;
+            }
+
+            if (!success)
+            {
+                MessageUtils.Error($"Не удалось установить соединение с сервером!\nОшибка: {data}");
+                return;
+            }
+
+            _validated = true;
+            _serverData.DisplayName = data.Truncate(30);            
+            DataManager.Save();
+            MessageUtils.Info($"Соединение с {_serverData.DisplayName} успешно установлено!");
+        }
+
+        private void btnConnectBots_Click(object sender, EventArgs e)
+        {
+            if (_validated)
+            {
+                _serverCore.ConnectBots();
+            }
+        }
+
+        private void btnDisconnectBots_Click(object sender, EventArgs e)
+        {
+            if (_validated)
+            {
+                _serverCore.DisconnectBots();
+            }
         }
     }
 }

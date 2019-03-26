@@ -40,9 +40,15 @@
             this.lblLoadedCaption = new System.Windows.Forms.Label();
             this.gbAdministration = new System.Windows.Forms.GroupBox();
             this.btnCheckServerAvailable = new System.Windows.Forms.Button();
+            this.btnConnectBots = new System.Windows.Forms.Button();
+            this.tlpControls = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnDisconnectBots = new System.Windows.Forms.Button();
             this.gbPlayers.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbAdministration.SuspendLayout();
+            this.tlpControls.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbPlayers
@@ -113,6 +119,7 @@
             // lblActiveBots
             // 
             this.lblActiveBots.AutoSize = true;
+            this.lblActiveBots.ForeColor = System.Drawing.Color.Green;
             this.lblActiveBots.Location = new System.Drawing.Point(164, 60);
             this.lblActiveBots.Name = "lblActiveBots";
             this.lblActiveBots.Size = new System.Drawing.Size(18, 18);
@@ -122,6 +129,7 @@
             // lblActiveBotsCaption
             // 
             this.lblActiveBotsCaption.AutoSize = true;
+            this.lblActiveBotsCaption.ForeColor = System.Drawing.Color.Green;
             this.lblActiveBotsCaption.Location = new System.Drawing.Point(6, 60);
             this.lblActiveBotsCaption.Name = "lblActiveBotsCaption";
             this.lblActiveBotsCaption.Size = new System.Drawing.Size(164, 18);
@@ -148,7 +156,7 @@
             // 
             // gbAdministration
             // 
-            this.gbAdministration.Controls.Add(this.btnCheckServerAvailable);
+            this.gbAdministration.Controls.Add(this.tlpControls);
             this.gbAdministration.Location = new System.Drawing.Point(310, 197);
             this.gbAdministration.Name = "gbAdministration";
             this.gbAdministration.Size = new System.Drawing.Size(348, 172);
@@ -158,14 +166,72 @@
             // 
             // btnCheckServerAvailable
             // 
+            this.btnCheckServerAvailable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCheckServerAvailable.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnCheckServerAvailable.Location = new System.Drawing.Point(9, 26);
+            this.btnCheckServerAvailable.Location = new System.Drawing.Point(3, 3);
             this.btnCheckServerAvailable.Name = "btnCheckServerAvailable";
-            this.btnCheckServerAvailable.Size = new System.Drawing.Size(333, 38);
+            this.btnCheckServerAvailable.Size = new System.Drawing.Size(336, 40);
             this.btnCheckServerAvailable.TabIndex = 0;
             this.btnCheckServerAvailable.Text = "Проверить доступность сервера";
             this.btnCheckServerAvailable.UseVisualStyleBackColor = true;
             this.btnCheckServerAvailable.Click += new System.EventHandler(this.btnCheckServerAvailable_Click);
+            // 
+            // btnConnectBots
+            // 
+            this.btnConnectBots.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnConnectBots.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnConnectBots.ForeColor = System.Drawing.Color.Green;
+            this.btnConnectBots.Location = new System.Drawing.Point(3, 3);
+            this.btnConnectBots.Name = "btnConnectBots";
+            this.btnConnectBots.Size = new System.Drawing.Size(162, 41);
+            this.btnConnectBots.TabIndex = 1;
+            this.btnConnectBots.Text = "Запустить стадо";
+            this.btnConnectBots.UseVisualStyleBackColor = true;
+            this.btnConnectBots.Click += new System.EventHandler(this.btnConnectBots_Click);
+            // 
+            // tlpControls
+            // 
+            this.tlpControls.ColumnCount = 1;
+            this.tlpControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpControls.Controls.Add(this.btnCheckServerAvailable, 0, 0);
+            this.tlpControls.Controls.Add(this.tableLayoutPanel1, 0, 1);
+            this.tlpControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpControls.Location = new System.Drawing.Point(3, 23);
+            this.tlpControls.Name = "tlpControls";
+            this.tlpControls.RowCount = 2;
+            this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32.19178F));
+            this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67.80822F));
+            this.tlpControls.Size = new System.Drawing.Size(342, 146);
+            this.tlpControls.TabIndex = 0;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.btnDisconnectBots, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnConnectBots, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 49);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(336, 94);
+            this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // btnDisconnectBots
+            // 
+            this.btnDisconnectBots.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDisconnectBots.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDisconnectBots.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnDisconnectBots.Location = new System.Drawing.Point(171, 3);
+            this.btnDisconnectBots.Name = "btnDisconnectBots";
+            this.btnDisconnectBots.Size = new System.Drawing.Size(162, 41);
+            this.btnDisconnectBots.TabIndex = 2;
+            this.btnDisconnectBots.Text = "Идём баиньки";
+            this.btnDisconnectBots.UseVisualStyleBackColor = true;
+            this.btnDisconnectBots.Click += new System.EventHandler(this.btnDisconnectBots_Click);
             // 
             // ServerForm
             // 
@@ -187,6 +253,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.gbAdministration.ResumeLayout(false);
+            this.tlpControls.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -204,5 +272,9 @@
         private System.Windows.Forms.GroupBox gbAdministration;
         private System.Windows.Forms.Button btnLoadAccountsFile;
         private System.Windows.Forms.Button btnCheckServerAvailable;
+        private System.Windows.Forms.TableLayoutPanel tlpControls;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button btnDisconnectBots;
+        private System.Windows.Forms.Button btnConnectBots;
     }
 }
