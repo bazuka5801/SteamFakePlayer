@@ -109,6 +109,7 @@
       <DependentUpon>ServerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\PlayerJoiner.cs" />
+    <Compile Include="System\Extensions\StringEx.cs" />
     <Compile Include="System\Forms\DialogModel.cs" />
     <Compile Include="System\Forms\MessageUtils.cs" />
     <EmbeddedResource Include="Forms\AddServerForm.resx">
