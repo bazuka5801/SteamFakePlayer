@@ -62,6 +62,8 @@ namespace SteamFakePlayer
         private string _username;
         public uint AuthSequence;
 
+        private bool _quitAfterDisconnect = true;
+        
         public List<byte[]> GameConnectTokens = new List<byte[]>();
 
         public uint TicketRequestCount;
@@ -152,6 +154,7 @@ namespace SteamFakePlayer
 
             Framework.RunToMainThread(o =>
             {
+                _quitAfterDisconnect = false;
                 var server = Framework.Bootstraper.AddType<VirtualServer>();
                 server.Init(_steamUser.SteamID.ConvertToUInt64(), _username, bytes.Ticket, _quitAfterConnected);
                 server.Connect(_ip, _port);
@@ -174,11 +177,15 @@ namespace SteamFakePlayer
 
         private void OnDisconnected(SteamKit2.SteamClient.DisconnectedCallback callback)
         {
-            ConsoleSystem.Log("Disconnected from Steam, reconnecting in 5...");
-
-            Thread.Sleep(TimeSpan.FromSeconds(5));
-
-            _steamClient.Connect();
+            if (_quitAfterDisconnect)
+            {
+                ConsoleSystem.Log("Disconnected from Steam, quiting...");
+                Framework.Quit();
+            }
+            else
+            {
+                ConsoleSystem.Log("Disconnected from Steam!");
+            }
         }
 
         private void OnLoggedOn(SteamUser.LoggedOnCallback callback)
