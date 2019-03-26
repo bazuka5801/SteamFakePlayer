@@ -7,10 +7,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>$(SolutionDir)temp</OutputPath>
-    <BuildPath>$(SolutionDir)build</BuildPath>
+    <PublishDir>..\build\Joiner</PublishDir>
   </PropertyGroup>
 
   <ItemGroup>
