@@ -80,7 +80,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\BotPlayer.cs" />
     <Compile Include="Core\ServerChecker.cs" />
+    <Compile Include="Core\ServerCore.cs" />
     <Compile Include="Data\BotAccountData.cs" />
     <Compile Include="Data\DataManager.cs" />
     <Compile Include="Data\ManagerData.cs" />
