@@ -55,6 +55,12 @@ namespace SteamFakePlayer
                     _quitAfterConnected = true;
                 }
 
+                if (args.Contains("-pid"))
+                {
+                    var parentPID = int.Parse(args[1+args.ToList().FindIndex(p => p == "-pid")]);
+                    ProcessManager.Init(parentPID);
+                }
+
                 Framework.Initialization<Program>();
             }
         }
