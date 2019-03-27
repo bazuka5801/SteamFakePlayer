@@ -70,5 +70,7 @@ namespace SteamFakePlayer.Manager
     {
         public string IP;
         public int Port;
+
+        public BotOptionsModel BotOptions = new BotOptionsModel();
     }
 }
