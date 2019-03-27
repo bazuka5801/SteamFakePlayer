@@ -113,11 +113,13 @@ namespace SteamFakePlayer.Manager.Core
         protected virtual void OnConnectedToServer(string servername)
         {
             State = ConnectionState.Playing;
+            Console.WriteLine($"'{_account.Username}' connected to '{_server.DisplayName}'");
         }
 
         protected virtual void OnDisconnectedFromServer(string reason)
         {
             State = ConnectionState.Disconnected;
+            Console.WriteLine($"'{_account.Username}' disconnected from '{_server.DisplayName}' reason: {reason}");
         }
 
         private void Joiner_OutputDataReceived(object sender, DataReceivedEventArgs e)
@@ -137,7 +139,7 @@ namespace SteamFakePlayer.Manager.Core
                 OnDisconnectedFromServer("Connection Attempt Failed");
             }
 
-            Console.WriteLine(e.Data);
+            //Console.WriteLine(e.Data);
         }
 
         protected virtual string GenerateJoinerArguments()
