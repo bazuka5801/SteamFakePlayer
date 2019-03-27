@@ -17,5 +17,8 @@ namespace SteamFakePlayer.Manager.Data
 
         [ProtoMember(4)]
         public List<BotAccountData> Bots = new List<BotAccountData>();
+
+        [ProtoMember(5)]
+        public BotOptionsData BotOptions = new BotOptionsData();
     }
 }
