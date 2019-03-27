@@ -13,6 +13,8 @@ namespace SteamFakePlayer.Manager.Core
 
     public class ServerCore
     {
+        private readonly List<Timeout> _enterTimeouts = new List<Timeout>();
+        private readonly List<Timeout> _exitTimeouts = new List<Timeout>();
         private readonly List<BotPlayer> _players = new List<BotPlayer>();
         private readonly ServerData _serverData;
         private readonly ServerStats _serverStats;
@@ -60,7 +62,15 @@ namespace SteamFakePlayer.Manager.Core
             if (IsRunning == false)
             {
                 IsRunning = true;
-                ForEach(bot => { bot.Join(); });
+
+                _exitTimeouts.ForEach(p => p.Stop());
+                _exitTimeouts.Clear();
+
+                ForEach(bot =>
+                {
+                    var delay = 1000 * Rand.Int32(_serverData.BotOptions.EnterMin, _serverData.BotOptions.EnterMax);
+                    _enterTimeouts.Add(new Timeout(delay, bot.Join));
+                });
                 return true;
             }
 
@@ -72,7 +82,15 @@ namespace SteamFakePlayer.Manager.Core
             if (IsRunning)
             {
                 IsRunning = false;
-                ForEach(bot => { bot.Disconnect(); });
+
+                _enterTimeouts.ForEach(p => p.Stop());
+                _enterTimeouts.Clear();
+
+                ForEach(bot =>
+                {
+                    var delay = 1000 * Rand.Int32(_serverData.BotOptions.ExitMin, _serverData.BotOptions.ExitMax);
+                    _exitTimeouts.Add(new Timeout(delay, bot.Disconnect));
+                });
                 return true;
             }
 
