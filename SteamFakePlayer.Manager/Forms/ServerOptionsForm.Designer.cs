@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerOptionsForm));
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
+            this.btnBotOptions = new System.Windows.Forms.Button();
             this.tlpPort = new System.Windows.Forms.TableLayoutPanel();
             this.lblPort = new System.Windows.Forms.Label();
             this.tbPort = new System.Windows.Forms.TextBox();
@@ -39,7 +40,6 @@
             this.tlpButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.btnBotOptions = new System.Windows.Forms.Button();
             this.tlpMain.SuspendLayout();
             this.tlpPort.SuspendLayout();
             this.tlpIP.SuspendLayout();
@@ -66,6 +66,19 @@
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpMain.Size = new System.Drawing.Size(347, 178);
             this.tlpMain.TabIndex = 2;
+            // 
+            // btnBotOptions
+            // 
+            this.btnBotOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBotOptions.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnBotOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnBotOptions.Location = new System.Drawing.Point(3, 83);
+            this.btnBotOptions.Name = "btnBotOptions";
+            this.btnBotOptions.Size = new System.Drawing.Size(341, 39);
+            this.btnBotOptions.TabIndex = 3;
+            this.btnBotOptions.Text = "Настроить бота";
+            this.btnBotOptions.UseVisualStyleBackColor = true;
+            this.btnBotOptions.Click += new System.EventHandler(this.btnBotOptions_Click);
             // 
             // tlpPort
             // 
@@ -177,19 +190,6 @@
             this.btnSave.Text = "Сохранить";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnBotOptions
-            // 
-            this.btnBotOptions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnBotOptions.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnBotOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnBotOptions.Location = new System.Drawing.Point(3, 83);
-            this.btnBotOptions.Name = "btnBotOptions";
-            this.btnBotOptions.Size = new System.Drawing.Size(341, 39);
-            this.btnBotOptions.TabIndex = 3;
-            this.btnBotOptions.Text = "Настроить бота";
-            this.btnBotOptions.UseVisualStyleBackColor = true;
-            this.btnBotOptions.Click += new System.EventHandler(this.btnBotOptions_Click);
             // 
             // ServerOptionsForm
             // 
