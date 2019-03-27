@@ -17,6 +17,8 @@ namespace SteamFakePlayer.Manager.Core
         private readonly ServerData _serverData;
         private readonly ServerStats _serverStats;
 
+        public bool IsRunning { get; private set; }
+
         public ServerCore(ServerData serverData)
         {
             _serverData = serverData;
@@ -53,14 +55,28 @@ namespace SteamFakePlayer.Manager.Core
 
         internal void ForEach(Action<BotPlayer> action) => _players.ForEach(action);
 
-        internal void ConnectBots()
+        internal bool ConnectBots()
         {
-            ForEach(bot => { bot.Join(); });
+            if (IsRunning == false)
+            {
+                IsRunning = true;
+                ForEach(bot => { bot.Join(); });
+                return true;
+            }
+
+            return false;
         }
 
-        internal void DisconnectBots()
+        internal bool DisconnectBots()
         {
-            ForEach(bot => { bot.Disconnect(); });
+            if (IsRunning)
+            {
+                IsRunning = false;
+                ForEach(bot => { bot.Disconnect(); });
+                return true;
+            }
+
+            return false;
         }
     }
 }

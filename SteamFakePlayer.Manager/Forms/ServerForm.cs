@@ -127,7 +127,14 @@ namespace SteamFakePlayer.Manager
         {
             if (_validated)
             {
-                _serverCore.ConnectBots();
+                if (_serverCore.ConnectBots() == false)
+                {
+                    MessageUtils.Error("Стадо уже играет!");
+                }
+            }
+            else
+            {
+                MessageUtils.Info("Перед запуском стада, нужно проверить его доступность!");
             }
         }
 
@@ -135,7 +142,14 @@ namespace SteamFakePlayer.Manager
         {
             if (_validated)
             {
-                _serverCore.DisconnectBots();
+                if (_serverCore.DisconnectBots() == false)
+                {
+                    MessageUtils.Error("Стадо уже спит!");
+                }
+            }
+            else
+            {
+                MessageUtils.Info("Перед запуском стада, нужно проверить его доступность!");
             }
         }
     }
