@@ -12,11 +12,11 @@ namespace SteamFakePlayer.Network
     public class VirtualServer : SapphireType
     {
         private Dictionary<uint, string> _pooledStrings = new Dictionary<uint, string>();
+        private bool _quitAfterConnected;
 
         private ulong _steamId;
         private byte[] _token;
         private string _username;
-        private bool _quitAfterConnected;
         public RakNet.Client BaseClient;
 
         public UserInformation ConnectionInformation { get; private set; }
@@ -200,6 +200,7 @@ namespace SteamFakePlayer.Network
                         BaseClient.Disconnect("", true);
                         Framework.Quit();
                     }
+
                     BaseClient.Connection.encryptionLevel = approval.encryption;
                     BaseClient.Connection.decryptIncoming = true;
 

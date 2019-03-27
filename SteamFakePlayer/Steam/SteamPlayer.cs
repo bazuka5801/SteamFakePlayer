@@ -37,20 +37,22 @@ namespace SteamFakePlayer
 
         private readonly List<AuthTicket> _authTicketStore = new List<AuthTicket>();
 
+        private readonly string _ip;
+
         private readonly Dictionary<uint, byte[]> _ownershipTicketStore = new Dictionary<uint, byte[]>();
         private readonly string _password;
+        private readonly int _port;
+        private readonly bool _quitAfterConnected;
 
         private readonly string _user;
         private string _authCode;
 
-        private readonly string _ip;
-
         private bool _isRunning;
         private CallbackManager _manager;
-        private readonly int _port;
-        private readonly bool _quitAfterConnected;
 
         private IPAddress _publicIp;
+
+        private bool _quitAfterDisconnect = true;
         private SteamApps _steamApps;
 
         private SteamKit2.SteamClient _steamClient;
@@ -62,8 +64,6 @@ namespace SteamFakePlayer
         private string _username;
         public uint AuthSequence;
 
-        private bool _quitAfterDisconnect = true;
-        
         public List<byte[]> GameConnectTokens = new List<byte[]>();
 
         public uint TicketRequestCount;

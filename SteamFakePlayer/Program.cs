@@ -50,6 +50,7 @@ namespace SteamFakePlayer
                 {
                     ConsoleView.Hide();
                 }
+
                 if (args.Contains("-quit-after-connected"))
                 {
                     _quitAfterConnected = true;
@@ -57,7 +58,7 @@ namespace SteamFakePlayer
 
                 if (args.Contains("-pid"))
                 {
-                    var parentPID = int.Parse(args[1+args.ToList().FindIndex(p => p == "-pid")]);
+                    var parentPID = int.Parse(args[1 + args.ToList().FindIndex(p => p == "-pid")]);
                     ProcessManager.Init(parentPID);
                 }
 
