@@ -13,18 +13,20 @@ namespace SteamFakePlayer.Manager
     {
         public static bool TryGetModel(out TModel obj)
         {
-            var model = new TModel();
-            using (var form = (TForm)Activator.CreateInstance(typeof(TForm), new object[] { model } ))
+            return TryGetModel(obj = new TModel());
+        }
+
+        public static bool TryGetModel(TModel model)
+        {
+            using (var form = (TForm)Activator.CreateInstance(typeof(TForm), new object[] { model }))
             {
                 form.ShowDialog();
             }
             if (model.Success)
             {
-                obj = model;
                 return true;
             }
 
-            obj = null;
             return false;
         }
     }
