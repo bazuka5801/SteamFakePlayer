@@ -168,11 +168,23 @@ namespace SteamFakePlayer.Manager
             {
                 IP = _serverData.IP,
                 Port = _serverData.Port,
+                BotOptions =
+                {
+                    EnterMin = _serverData.BotOptions.EnterMin,
+                    EnterMax = _serverData.BotOptions.EnterMax,
+                    ExitMin = _serverData.BotOptions.ExitMin,
+                    ExitMax = _serverData.BotOptions.ExitMax,
+                }
             };
             if (ServerOptionsModel.TryGetModel(model))
             {
                 _serverData.IP = model.IP;
                 _serverData.Port = model.Port;
+
+                _serverData.BotOptions.EnterMin = model.BotOptions.EnterMin;
+                _serverData.BotOptions.EnterMax = model.BotOptions.EnterMax;
+                _serverData.BotOptions.ExitMin = model.BotOptions.ExitMin;
+                _serverData.BotOptions.ExitMax = model.BotOptions.ExitMax;
 
                 DataManager.Save();
             }
