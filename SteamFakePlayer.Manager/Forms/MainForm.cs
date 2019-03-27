@@ -14,7 +14,13 @@ namespace SteamFakePlayer.Manager
 
             InitializeComponent();
 
+            DataManager.DataChanged += OnDataChanged;
             LoadData(DataManager.Data);
+        }
+
+        private void OnDataChanged(ManagerData data)
+        {
+            LoadData(data);
         }
 
         private void LoadData(ManagerData data)

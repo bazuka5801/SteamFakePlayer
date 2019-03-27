@@ -24,7 +24,14 @@ namespace SteamFakePlayer.Manager
 
             InitializeComponent();
 
+            DataManager.DataChanged += OnDataChanged;
             LoadData(serverdata);
+        }
+
+        private void OnDataChanged(ManagerData data)
+        {
+            // Local because ref did'nt changed
+            LoadData(_serverData);
         }
 
         private void OnServerStatsChanged(ServerStats stats)
@@ -41,7 +48,9 @@ namespace SteamFakePlayer.Manager
         {
             tbAccounts.Lines = serverData.Bots.Select(p => $"{p.Username}:{p.Password}").ToArray();
 
-            lblLoaded.Text = _serverData.Bots.Count.ToString();
+            lblLoaded.Text = serverData.Bots.Count.ToString();
+
+            this.Text = $"{serverData.DisplayName} [{serverData.IP}:{serverData.Port}]";
         }
 
         private void cbShowAccounts_CheckedChanged(object sender, EventArgs e)
