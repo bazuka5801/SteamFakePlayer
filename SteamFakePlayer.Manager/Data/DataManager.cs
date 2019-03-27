@@ -12,8 +12,6 @@ namespace SteamFakePlayer.Manager.Data
         private static ManagerData _data;
         private static bool _needSave;
 
-        public static event DataChanged DataChanged;
-
         public static ManagerData Data
         {
             get
@@ -34,6 +32,8 @@ namespace SteamFakePlayer.Manager.Data
                 }
             }
         }
+
+        public static event DataChanged DataChanged;
 
         public static void Save()
         {

@@ -5,13 +5,13 @@ using SteamFakePlayer.Manager.Data;
 
 namespace SteamFakePlayer.Manager
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
-        ///   Главная точка входа для приложения.
+        ///     Главная точка входа для приложения.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             using (SentrySdk.Init("https://58667611cabc40e9b0cdae27fe35d132@sentry.io/1422485"))
             {

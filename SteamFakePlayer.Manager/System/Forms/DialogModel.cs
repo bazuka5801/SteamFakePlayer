@@ -1,5 +1,5 @@
-﻿using System.Windows.Forms;
-using System;
+﻿using System;
+using System.Windows.Forms;
 
 namespace SteamFakePlayer.Manager
 {
@@ -7,21 +7,20 @@ namespace SteamFakePlayer.Manager
     {
         public bool Success;
     }
+
     public class DialogModel<TModel, TForm> : DialogModel
         where TModel : DialogModel, new()
         where TForm : Form
     {
-        public static bool TryGetModel(out TModel obj)
-        {
-            return TryGetModel(obj = new TModel());
-        }
+        public static bool TryGetModel(out TModel obj) => TryGetModel(obj = new TModel());
 
         public static bool TryGetModel(TModel model)
         {
-            using (var form = (TForm)Activator.CreateInstance(typeof(TForm), new object[] { model }))
+            using (var form = (TForm) Activator.CreateInstance(typeof(TForm), model))
             {
                 form.ShowDialog();
             }
+
             if (model.Success)
             {
                 return true;

@@ -36,16 +36,16 @@ namespace SteamFakePlayer.Manager
             }
         }
 
-        private void btnOpenServer_Click(object sender, System.EventArgs e)
+        private void btnOpenServer_Click(object sender, EventArgs e)
         {
-            int index = lbServers.SelectedIndex;
+            var index = lbServers.SelectedIndex;
             if (index == -1)
             {
                 MessageUtils.Error("Ничего не выбрано!");
                 return;
             }
 
-            ServerData serverData = DataManager.Data.Servers[index];
+            var serverData = DataManager.Data.Servers[index];
             new ServerForm(serverData).Show();
         }
 
@@ -54,11 +54,11 @@ namespace SteamFakePlayer.Manager
             Process.Start("https://vk.com/rustycode");
         }
 
-        private void btnAddServer_Click(object sender, System.EventArgs e)
+        private void btnAddServer_Click(object sender, EventArgs e)
         {
             if (AddServerModel.TryGetModel(out var model))
             {
-                DataManager.Data.Servers.Add(new ServerData()
+                DataManager.Data.Servers.Add(new ServerData
                 {
                     IP = model.IP,
                     Port = model.Port
@@ -68,7 +68,7 @@ namespace SteamFakePlayer.Manager
             }
         }
 
-        private void btnDeleteServer_Click(object sender, System.EventArgs e)
+        private void btnDeleteServer_Click(object sender, EventArgs e)
         {
             if (lbServers.SelectedIndex == -1)
             {

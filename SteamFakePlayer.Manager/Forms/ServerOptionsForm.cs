@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SteamFakePlayer.Manager
 {
     public partial class ServerOptionsForm : Form
     {
-        private ServerOptionsModel _model;
+        private readonly ServerOptionsModel _model;
 
         public ServerOptionsForm(ServerOptionsModel model)
         {
@@ -68,9 +61,8 @@ namespace SteamFakePlayer.Manager
 
     public class ServerOptionsModel : DialogModel<ServerOptionsModel, ServerOptionsForm>
     {
+        public BotOptionsModel BotOptions = new BotOptionsModel();
         public string IP;
         public int Port;
-
-        public BotOptionsModel BotOptions = new BotOptionsModel();
     }
 }

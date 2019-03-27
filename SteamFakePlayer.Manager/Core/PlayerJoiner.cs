@@ -21,10 +21,10 @@ namespace SteamFakePlayer.Manager.Core
     internal abstract class PlayerJoiner
     {
         private readonly BotAccountData _account;
+        private readonly ServerData _server;
         private Process _joinerProcess;
 
         private bool _running;
-        private readonly ServerData _server;
 
         private ConnectionState state = ConnectionState.Disconnected;
 

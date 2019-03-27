@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SteamFakePlayer.Manager
 {
     public partial class AddServerForm : Form
     {
-        private AddServerModel _model;
+        private readonly AddServerModel _model;
 
         public AddServerForm(AddServerModel model)
         {
-            this._model = model;
+            _model = model;
 
             InitializeComponent();
         }
@@ -58,9 +51,6 @@ namespace SteamFakePlayer.Manager
         public string IP;
         public int Port;
 
-        public override string ToString()
-        {
-            return $"{IP}:{Port}";
-        }
+        public override string ToString() => $"{IP}:{Port}";
     }
 }

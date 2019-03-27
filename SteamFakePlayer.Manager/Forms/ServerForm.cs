@@ -1,20 +1,19 @@
-﻿using SteamFakePlayer.Manager.Core;
-using SteamFakePlayer.Manager.Data;
-using SteamFakePlayer.Manager.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using SteamFakePlayer.Manager.Core;
+using SteamFakePlayer.Manager.Data;
+using SteamFakePlayer.Manager.Extensions;
 
 namespace SteamFakePlayer.Manager
 {
     public partial class ServerForm : Form
     {
-        private ServerData _serverData;
-        private ServerCore _serverCore;
-        private bool _validated;        
+        private readonly ServerCore _serverCore;
+        private readonly ServerData _serverData;
+        private bool _validated;
 
         public ServerForm(ServerData serverdata)
         {
@@ -38,9 +37,10 @@ namespace SteamFakePlayer.Manager
         {
             if (InvokeRequired)
             {
-                Invoke((Action)(() => OnServerStatsChanged(stats)));
+                Invoke((Action) (() => OnServerStatsChanged(stats)));
                 return;
             }
+
             lblActiveBots.Text = stats.ActiveBotsCount.ToString();
         }
 
@@ -50,12 +50,12 @@ namespace SteamFakePlayer.Manager
 
             lblLoaded.Text = serverData.Bots.Count.ToString();
 
-            this.Text = $"{serverData.DisplayName} [{serverData.IP}:{serverData.Port}]";
+            Text = $"{serverData.DisplayName} [{serverData.IP}:{serverData.Port}]";
         }
 
         private void cbShowAccounts_CheckedChanged(object sender, EventArgs e)
         {
-            tbAccounts.PasswordChar = ((CheckBox)sender).Checked ? '\0' : '*';
+            tbAccounts.PasswordChar = ((CheckBox) sender).Checked ? '\0' : '*';
         }
 
         private void btnLoadAccountsFile_Click(object sender, EventArgs e)
@@ -80,18 +80,18 @@ namespace SteamFakePlayer.Manager
 
                         foreach (var account in lines)
                         {
-                            string[] accountData = account.Split(':');
-                            string username = accountData[0];
-                            string password = accountData[1];
+                            var accountData = account.Split(':');
+                            var username = accountData[0];
+                            var password = accountData[1];
 
-                            accounts.Add(new BotAccountData() { Username = username, Password = password });
+                            accounts.Add(new BotAccountData {Username = username, Password = password});
                         }
 
                         _serverData.Bots = accounts;
                         DataManager.Save();
                         LoadData(_serverData);
                     }
-                    catch(IndexOutOfRangeException)
+                    catch (IndexOutOfRangeException)
                     {
                         MessageUtils.Error("Файл имеет неверную структуру!");
                     }
@@ -116,7 +116,7 @@ namespace SteamFakePlayer.Manager
         {
             if (InvokeRequired)
             {
-                Invoke((Action)(()=> { OnServerValidatingResult(success, data); }));
+                Invoke((Action) (() => { OnServerValidatingResult(success, data); }));
                 return;
             }
 
@@ -127,7 +127,7 @@ namespace SteamFakePlayer.Manager
             }
 
             _validated = true;
-            _serverData.DisplayName = data.Truncate(30);            
+            _serverData.DisplayName = data.Truncate(30);
             DataManager.Save();
             MessageUtils.Info($"Соединение с {_serverData.DisplayName} успешно установлено!");
         }
@@ -164,7 +164,7 @@ namespace SteamFakePlayer.Manager
 
         private void btnOptions_Click(object sender, EventArgs e)
         {
-            var model = new ServerOptionsModel()
+            var model = new ServerOptionsModel
             {
                 IP = _serverData.IP,
                 Port = _serverData.Port,
@@ -173,7 +173,7 @@ namespace SteamFakePlayer.Manager
                     EnterMin = _serverData.BotOptions.EnterMin,
                     EnterMax = _serverData.BotOptions.EnterMax,
                     ExitMin = _serverData.BotOptions.ExitMin,
-                    ExitMax = _serverData.BotOptions.ExitMax,
+                    ExitMax = _serverData.BotOptions.ExitMax
                 }
             };
             if (ServerOptionsModel.TryGetModel(model))

@@ -17,8 +17,6 @@ namespace SteamFakePlayer.Manager.Core
         private readonly ServerData _serverData;
         private readonly ServerStats _serverStats;
 
-        public bool IsRunning { get; private set; }
-
         public ServerCore(ServerData serverData)
         {
             _serverData = serverData;
@@ -26,6 +24,8 @@ namespace SteamFakePlayer.Manager.Core
 
             SetupPlayers();
         }
+
+        public bool IsRunning { get; private set; }
 
         public event ServerStatsChanged StatsChanged;
 

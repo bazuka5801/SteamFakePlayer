@@ -6,13 +6,13 @@ namespace SteamFakePlayer.Manager.Data
     [ProtoContract]
     public class ManagerData
     {
+        [ProtoMember(3)]
+        public string JoinerFile;
+
         [ProtoMember(1)]
         public string LastKey;
 
         [ProtoMember(2)]
         public List<ServerData> Servers = new List<ServerData>();
-
-        [ProtoMember(3)]
-        public string JoinerFile;
     }
 }
