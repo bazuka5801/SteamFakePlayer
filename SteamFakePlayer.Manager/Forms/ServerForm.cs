@@ -152,5 +152,21 @@ namespace SteamFakePlayer.Manager
                 MessageUtils.Info("Перед запуском стада, нужно проверить его доступность!");
             }
         }
+
+        private void btnOptions_Click(object sender, EventArgs e)
+        {
+            var model = new ServerOptionsModel()
+            {
+                IP = _serverData.IP,
+                Port = _serverData.Port,
+            };
+            if (ServerOptionsModel.TryGetModel(model))
+            {
+                _serverData.IP = model.IP;
+                _serverData.Port = model.Port;
+
+                DataManager.Save();
+            }
+        }
     }
 }
