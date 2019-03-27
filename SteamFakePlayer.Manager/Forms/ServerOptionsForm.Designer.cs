@@ -39,6 +39,7 @@
             this.tlpButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnBotOptions = new System.Windows.Forms.Button();
             this.tlpMain.SuspendLayout();
             this.tlpPort.SuspendLayout();
             this.tlpIP.SuspendLayout();
@@ -49,19 +50,21 @@
             // 
             this.tlpMain.ColumnCount = 1;
             this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpMain.Controls.Add(this.btnBotOptions, 0, 2);
             this.tlpMain.Controls.Add(this.tlpPort, 0, 1);
             this.tlpMain.Controls.Add(this.tlpIP, 0, 0);
-            this.tlpMain.Controls.Add(this.tlpButtons, 0, 2);
+            this.tlpMain.Controls.Add(this.tlpButtons, 0, 3);
             this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMain.Location = new System.Drawing.Point(0, 0);
             this.tlpMain.Name = "tlpMain";
-            this.tlpMain.RowCount = 3;
+            this.tlpMain.RowCount = 4;
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpMain.Size = new System.Drawing.Size(347, 141);
+            this.tlpMain.Size = new System.Drawing.Size(347, 178);
             this.tlpMain.TabIndex = 2;
             // 
             // tlpPort
@@ -140,12 +143,13 @@
             this.tlpButtons.Controls.Add(this.btnCancel, 1, 0);
             this.tlpButtons.Controls.Add(this.btnAdd, 0, 0);
             this.tlpButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpButtons.Location = new System.Drawing.Point(3, 83);
+            this.tlpButtons.Location = new System.Drawing.Point(0, 125);
+            this.tlpButtons.Margin = new System.Windows.Forms.Padding(0);
             this.tlpButtons.Name = "tlpButtons";
             this.tlpButtons.RowCount = 1;
             this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpButtons.Size = new System.Drawing.Size(341, 55);
+            this.tlpButtons.Size = new System.Drawing.Size(347, 53);
             this.tlpButtons.TabIndex = 0;
             // 
             // btnCancel
@@ -153,9 +157,9 @@
             this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCancel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnCancel.ForeColor = System.Drawing.Color.Red;
-            this.btnCancel.Location = new System.Drawing.Point(173, 3);
+            this.btnCancel.Location = new System.Drawing.Point(176, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(165, 49);
+            this.btnCancel.Size = new System.Drawing.Size(168, 47);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -168,22 +172,37 @@
             this.btnAdd.ForeColor = System.Drawing.Color.ForestGreen;
             this.btnAdd.Location = new System.Drawing.Point(3, 3);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(164, 49);
+            this.btnAdd.Size = new System.Drawing.Size(167, 47);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Сохранить";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnBotOptions
+            // 
+            this.btnBotOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBotOptions.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnBotOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnBotOptions.Location = new System.Drawing.Point(3, 83);
+            this.btnBotOptions.Name = "btnBotOptions";
+            this.btnBotOptions.Size = new System.Drawing.Size(341, 39);
+            this.btnBotOptions.TabIndex = 3;
+            this.btnBotOptions.Text = "Настроить бота";
+            this.btnBotOptions.UseVisualStyleBackColor = true;
+            this.btnBotOptions.Click += new System.EventHandler(this.btnBotOptions_Click);
+            // 
             // ServerOptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 141);
+            this.ClientSize = new System.Drawing.Size(347, 178);
             this.Controls.Add(this.tlpMain);
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "ServerOptionsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Настройки сервера";
             this.tlpMain.ResumeLayout(false);
             this.tlpPort.ResumeLayout(false);
@@ -207,5 +226,6 @@
         private System.Windows.Forms.TableLayoutPanel tlpButtons;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnBotOptions;
     }
 }

@@ -59,6 +59,11 @@ namespace SteamFakePlayer.Manager
         {
             Close();
         }
+
+        private void btnBotOptions_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class ServerOptionsModel : DialogModel<ServerOptionsModel, ServerOptionsForm>
