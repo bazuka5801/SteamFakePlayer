@@ -62,7 +62,7 @@ namespace SteamFakePlayer.Manager
 
         private void btnBotOptions_Click(object sender, EventArgs e)
         {
-
+            BotOptionsModel.TryGetModel(_model.BotOptions);
         }
     }
 
