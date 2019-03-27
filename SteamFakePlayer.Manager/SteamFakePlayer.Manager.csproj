@@ -128,6 +128,7 @@
     <Compile Include="System\Extensions\StringEx.cs" />
     <Compile Include="System\Forms\DialogModel.cs" />
     <Compile Include="System\Forms\MessageUtils.cs" />
+    <Compile Include="System\Forms\Timeout.cs" />
     <Compile Include="System\Rand.cs" />
     <EmbeddedResource Include="Forms\AddServerForm.resx">
       <DependentUpon>AddServerForm.cs</DependentUpon>
