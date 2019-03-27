@@ -4,11 +4,15 @@ using ProtoBuf;
 
 namespace SteamFakePlayer.Manager.Data
 {
+    public delegate void DataChanged(ManagerData data);
+
     public static class DataManager
     {
         private const string _file = "data.bin";
         private static ManagerData _data;
         private static bool _needSave;
+
+        public static event DataChanged DataChanged;
 
         public static ManagerData Data
         {
@@ -34,6 +38,10 @@ namespace SteamFakePlayer.Manager.Data
         public static void Save()
         {
             _needSave = true;
+            if (DataChanged != null)
+            {
+                DataChanged(_data);
+            }
         }
 
         private static void SaveInternal()
