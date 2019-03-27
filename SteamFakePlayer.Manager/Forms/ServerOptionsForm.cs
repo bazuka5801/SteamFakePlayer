@@ -29,7 +29,7 @@ namespace SteamFakePlayer.Manager
             tbPort.Text = model.Port.ToString();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(tbIP.Text))
             {
