@@ -69,6 +69,7 @@ namespace SteamFakePlayer.Manager.Core
                 ForEach(bot =>
                 {
                     var delay = 1000 * Rand.Int32(_serverData.BotOptions.EnterMin, _serverData.BotOptions.EnterMax);
+                    Console.WriteLine($"Enter delay for {bot.Account.Username}: {delay}");
                     _enterTimeouts.Add(new Timeout(delay, bot.Join));
                 });
                 return true;
@@ -89,6 +90,7 @@ namespace SteamFakePlayer.Manager.Core
                 ForEach(bot =>
                 {
                     var delay = 1000 * Rand.Int32(_serverData.BotOptions.ExitMin, _serverData.BotOptions.ExitMax);
+                    Console.WriteLine($"Exit delay for {bot.Account.Username}: {delay}");
                     _exitTimeouts.Add(new Timeout(delay, bot.Disconnect));
                 });
                 return true;

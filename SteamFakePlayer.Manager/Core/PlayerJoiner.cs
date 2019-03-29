@@ -47,6 +47,8 @@ namespace SteamFakePlayer.Manager.Core
             }
         }
 
+        public BotAccountData Account => _account;
+
         internal event StateChanged StateChanged;
 
         protected virtual void OnStateChanged(ConnectionState state)
