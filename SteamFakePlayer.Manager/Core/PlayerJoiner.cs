@@ -112,6 +112,18 @@ namespace SteamFakePlayer.Manager.Core
             }
         }
 
+        private void ChangeTask(ref Timeout currentTimeout, Timeout newTimeout)
+        {
+            if (currentTimeout != null)
+            {
+                currentTimeout.Stop();
+                currentTimeout.Dispose();
+                currentTimeout = null;
+            }
+
+            currentTimeout = newTimeout;
+        }        
+
         protected virtual void OnConnectedToServer(string servername)
         {
             State = ConnectionState.Playing;
