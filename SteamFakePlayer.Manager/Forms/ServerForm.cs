@@ -135,31 +135,17 @@ namespace SteamFakePlayer.Manager
 
         private void btnConnectBots_Click(object sender, EventArgs e)
         {
-            if (_validated)
+            if (_serverCore.ConnectBots() == false)
             {
-                if (_serverCore.ConnectBots() == false)
-                {
-                    MessageUtils.Error("Стадо уже играет!");
-                }
-            }
-            else
-            {
-                MessageUtils.Info("Перед запуском стада, нужно проверить его доступность!");
+                MessageUtils.Error("Стадо уже играет!");
             }
         }
 
         private void btnDisconnectBots_Click(object sender, EventArgs e)
         {
-            if (_validated)
+            if (_serverCore.DisconnectBots() == false)
             {
-                if (_serverCore.DisconnectBots() == false)
-                {
-                    MessageUtils.Error("Стадо уже спит!");
-                }
-            }
-            else
-            {
-                MessageUtils.Info("Перед запуском стада, нужно проверить его доступность!");
+                MessageUtils.Error("Стадо уже спит!");
             }
         }
 
