@@ -28,6 +28,8 @@ namespace SteamFakePlayer.Manager.Core
 
         private ConnectionState state = ConnectionState.Disconnected;
 
+        private Timeout _connectingTask, _disconnectingTask;
+
         public PlayerJoiner(BotAccountData account, ServerData server)
         {
             _account = account;
@@ -57,18 +59,7 @@ namespace SteamFakePlayer.Manager.Core
             {
                 StateChanged(state);
             }
-        }
-
-        public void Join()
-        {
-            if (_running)
-            {
-                throw new Exception("Is Running");
-            }
-
-            _running = true;
-            Task.Run(() => RunJoiner());
-        }
+        }        
 
         private void RunJoiner()
         {
@@ -104,12 +95,51 @@ namespace SteamFakePlayer.Manager.Core
             Console.WriteLine(e.Data);
         }
 
-        internal void Disconnect()
+        internal void ConnectWithSettingsDelay()
+        {
+            var delay = 1000 * Rand.Int32(_server.BotOptions.EnterMin, _server.BotOptions.EnterMax);
+            ConnectWithDelay(delay);
+        }
+
+        internal void ConnectWithDelay(int delay)
+        {
+            ReplaceTask(ref _connectingTask, new Timeout(delay, Connect));
+        }
+
+        private void Connect()
+        {
+            if (_running)
+            {
+                new Timeout(100, Connect);
+                return;
+            }
+
+            _running = true;
+            Task.Run(() => RunJoiner());
+        }
+
+        internal void DisconnectWithSettingsDelay()
+        {
+            var delay = 1000 * Rand.Int32(_server.BotOptions.ExitMin, _server.BotOptions.ExitMax);
+            DisconnectWithDelay(delay);
+        }
+
+        internal void DisconnectWithDelay(int delay)
+        {
+            ReplaceTask(ref _disconnectingTask, new Timeout(delay, DisconnectWithBlocking));
+        }
+
+        private void DisconnectWithBlocking()
         {
             if (State != ConnectionState.Disconnected)
             {
-                _joinerProcess.Kill();
+                KillJoiner();
             }
+        }
+
+        private void KillJoiner()
+        {
+            _joinerProcess.Kill();
         }
 
         private void ReplaceTask(ref Timeout currentTimeout, Timeout newTimeout)
@@ -157,7 +187,8 @@ namespace SteamFakePlayer.Manager.Core
                 OnDisconnectedFromServer("Server Restarting");
             }
 
-            //Console.WriteLine(e.Data);
+            Console.WriteLine($"[{Account.Username}] {e.Data}");
+        }
         }
 
         protected virtual string GenerateJoinerArguments()
