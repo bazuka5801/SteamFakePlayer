@@ -160,7 +160,9 @@ namespace SteamFakePlayer.Manager
                     EnterMin = _serverData.BotOptions.EnterMin,
                     EnterMax = _serverData.BotOptions.EnterMax,
                     ExitMin = _serverData.BotOptions.ExitMin,
-                    ExitMax = _serverData.BotOptions.ExitMax
+                    ExitMax = _serverData.BotOptions.ExitMax,
+                    ReconnectMin = _serverData.BotOptions.ReconnectMin,
+                    ReconnectMax = _serverData.BotOptions.ReconnectMax,
                 }
             };
             if (ServerOptionsModel.TryGetModel(model))
@@ -172,6 +174,8 @@ namespace SteamFakePlayer.Manager
                 _serverData.BotOptions.EnterMax = model.BotOptions.EnterMax;
                 _serverData.BotOptions.ExitMin = model.BotOptions.ExitMin;
                 _serverData.BotOptions.ExitMax = model.BotOptions.ExitMax;
+                _serverData.BotOptions.ReconnectMin = model.BotOptions.ReconnectMin;
+                _serverData.BotOptions.ReconnectMax = model.BotOptions.ReconnectMax;
 
                 DataManager.Save();
             }

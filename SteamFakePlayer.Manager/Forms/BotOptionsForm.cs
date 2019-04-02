@@ -22,15 +22,19 @@ namespace SteamFakePlayer.Manager
             tbEnterMax.Text = model.EnterMax.ToString();
             tbExitMin.Text = model.ExitMin.ToString();
             tbExitMax.Text = model.ExitMax.ToString();
+            tbReconnectMin.Text = model.ReconnectMin.ToString();
+            tbReconnectMax.Text = model.ReconnectMax.ToString();
         }
 
         public bool SaveData()
         {
-            int enterMin = 0, enterMax = 0, exitMin = 0, exitMax = 0;
+            int enterMin = 0, enterMax = 0, exitMin = 0, exitMax = 0, reconnectMin = 0, reconnectMax = 0;
             var result = ValidateIntField("EnterMin", tbEnterMin, out enterMin)
                          && ValidateIntField("EnterMax", tbEnterMax, out enterMax)
                          && ValidateIntField("ExitMin", tbExitMin, out exitMin)
-                         && ValidateIntField("ExitMax", tbExitMax, out exitMax);
+                         && ValidateIntField("ExitMax", tbExitMax, out exitMax)
+                         && ValidateIntField("ReconnectMin", tbReconnectMin, out reconnectMin)
+                         && ValidateIntField("ReconnectMax", tbReconnectMax, out reconnectMax);
 
             if (result)
             {
@@ -38,6 +42,8 @@ namespace SteamFakePlayer.Manager
                 _model.EnterMax = enterMax;
                 _model.ExitMin = exitMin;
                 _model.ExitMax = exitMax;
+                _model.ReconnectMin = reconnectMin;
+                _model.ReconnectMax = reconnectMax;
                 return true;
             }
 
@@ -76,5 +82,6 @@ namespace SteamFakePlayer.Manager
     {
         public int EnterMin, EnterMax;
         public int ExitMin, ExitMax;
+        public int ReconnectMin, ReconnectMax;
     }
 }

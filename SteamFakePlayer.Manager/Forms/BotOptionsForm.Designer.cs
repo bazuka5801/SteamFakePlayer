@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BotOptionsForm));
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpReconnect = new System.Windows.Forms.TableLayoutPanel();
+            this.tbReconnectMin = new System.Windows.Forms.TextBox();
+            this.lblReconnect = new System.Windows.Forms.Label();
+            this.tbReconnectMax = new System.Windows.Forms.TextBox();
             this.tlpExit = new System.Windows.Forms.TableLayoutPanel();
             this.tbExitMin = new System.Windows.Forms.TextBox();
             this.lblExit = new System.Windows.Forms.Label();
@@ -43,6 +47,7 @@
             this.tbEnterMax = new System.Windows.Forms.TextBox();
             this.lblHelp = new System.Windows.Forms.Label();
             this.tlpMain.SuspendLayout();
+            this.tlpReconnect.SuspendLayout();
             this.tlpExit.SuspendLayout();
             this.tlpButtons.SuspendLayout();
             this.tlpEnter.SuspendLayout();
@@ -52,6 +57,7 @@
             // 
             this.tlpMain.ColumnCount = 1;
             this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpMain.Controls.Add(this.tlpReconnect, 0, 3);
             this.tlpMain.Controls.Add(this.tlpExit, 0, 2);
             this.tlpMain.Controls.Add(this.tlpButtons, 0, 3);
             this.tlpMain.Controls.Add(this.tlpEnter, 0, 1);
@@ -63,21 +69,64 @@
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpMain.Size = new System.Drawing.Size(513, 173);
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpMain.Size = new System.Drawing.Size(513, 207);
             this.tlpMain.TabIndex = 3;
+            // 
+            // tlpReconnect
+            // 
+            this.tlpReconnect.ColumnCount = 3;
+            this.tlpReconnect.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tlpReconnect.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpReconnect.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpReconnect.Controls.Add(this.tbReconnectMin, 0, 0);
+            this.tlpReconnect.Controls.Add(this.lblReconnect, 0, 0);
+            this.tlpReconnect.Controls.Add(this.tbReconnectMax, 1, 0);
+            this.tlpReconnect.Location = new System.Drawing.Point(0, 128);
+            this.tlpReconnect.Margin = new System.Windows.Forms.Padding(0);
+            this.tlpReconnect.Name = "tlpReconnect";
+            this.tlpReconnect.RowCount = 1;
+            this.tlpReconnect.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpReconnect.Size = new System.Drawing.Size(513, 34);
+            this.tlpReconnect.TabIndex = 6;
+            // 
+            // tbReconnectMin
+            // 
+            this.tbReconnectMin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbReconnectMin.Location = new System.Drawing.Point(203, 3);
+            this.tbReconnectMin.Name = "tbReconnectMin";
+            this.tbReconnectMin.Size = new System.Drawing.Size(150, 27);
+            this.tbReconnectMin.TabIndex = 2;
+            // 
+            // lblReconnect
+            // 
+            this.lblReconnect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblReconnect.Location = new System.Drawing.Point(3, 0);
+            this.lblReconnect.Name = "lblReconnect";
+            this.lblReconnect.Size = new System.Drawing.Size(194, 34);
+            this.lblReconnect.TabIndex = 0;
+            this.lblReconnect.Text = "РЕКОННЕКТ";
+            this.lblReconnect.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbReconnectMax
+            // 
+            this.tbReconnectMax.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbReconnectMax.Location = new System.Drawing.Point(359, 3);
+            this.tbReconnectMax.Name = "tbReconnectMax";
+            this.tbReconnectMax.Size = new System.Drawing.Size(151, 27);
+            this.tbReconnectMax.TabIndex = 1;
             // 
             // tlpExit
             // 
             this.tlpExit.ColumnCount = 3;
-            this.tlpExit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tlpExit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tlpExit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpExit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpExit.Controls.Add(this.tbExitMin, 0, 0);
             this.tlpExit.Controls.Add(this.lblExit, 0, 0);
             this.tlpExit.Controls.Add(this.tbExitMax, 1, 0);
-            this.tlpExit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpExit.Location = new System.Drawing.Point(0, 94);
             this.tlpExit.Margin = new System.Windows.Forms.Padding(0);
             this.tlpExit.Name = "tlpExit";
@@ -89,9 +138,9 @@
             // tbExitMin
             // 
             this.tbExitMin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbExitMin.Location = new System.Drawing.Point(83, 3);
+            this.tbExitMin.Location = new System.Drawing.Point(203, 3);
             this.tbExitMin.Name = "tbExitMin";
-            this.tbExitMin.Size = new System.Drawing.Size(210, 27);
+            this.tbExitMin.Size = new System.Drawing.Size(150, 27);
             this.tbExitMin.TabIndex = 2;
             // 
             // lblExit
@@ -99,7 +148,7 @@
             this.lblExit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblExit.Location = new System.Drawing.Point(3, 0);
             this.lblExit.Name = "lblExit";
-            this.lblExit.Size = new System.Drawing.Size(74, 34);
+            this.lblExit.Size = new System.Drawing.Size(194, 34);
             this.lblExit.TabIndex = 0;
             this.lblExit.Text = "ВЫХОД";
             this.lblExit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -107,9 +156,9 @@
             // tbExitMax
             // 
             this.tbExitMax.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbExitMax.Location = new System.Drawing.Point(299, 3);
+            this.tbExitMax.Location = new System.Drawing.Point(359, 3);
             this.tbExitMax.Name = "tbExitMax";
-            this.tbExitMax.Size = new System.Drawing.Size(211, 27);
+            this.tbExitMax.Size = new System.Drawing.Size(151, 27);
             this.tbExitMax.TabIndex = 1;
             // 
             // tlpButtons
@@ -120,7 +169,7 @@
             this.tlpButtons.Controls.Add(this.btnCancel, 1, 0);
             this.tlpButtons.Controls.Add(this.btnSave, 0, 0);
             this.tlpButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpButtons.Location = new System.Drawing.Point(0, 128);
+            this.tlpButtons.Location = new System.Drawing.Point(0, 162);
             this.tlpButtons.Margin = new System.Windows.Forms.Padding(0);
             this.tlpButtons.Name = "tlpButtons";
             this.tlpButtons.RowCount = 1;
@@ -158,7 +207,7 @@
             // tlpEnter
             // 
             this.tlpEnter.ColumnCount = 3;
-            this.tlpEnter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tlpEnter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tlpEnter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpEnter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpEnter.Controls.Add(this.tbEnterMin, 0, 0);
@@ -176,9 +225,9 @@
             // tbEnterMin
             // 
             this.tbEnterMin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbEnterMin.Location = new System.Drawing.Point(83, 3);
+            this.tbEnterMin.Location = new System.Drawing.Point(203, 3);
             this.tbEnterMin.Name = "tbEnterMin";
-            this.tbEnterMin.Size = new System.Drawing.Size(210, 27);
+            this.tbEnterMin.Size = new System.Drawing.Size(150, 27);
             this.tbEnterMin.TabIndex = 2;
             // 
             // lblEnter
@@ -186,17 +235,17 @@
             this.lblEnter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblEnter.Location = new System.Drawing.Point(3, 0);
             this.lblEnter.Name = "lblEnter";
-            this.lblEnter.Size = new System.Drawing.Size(74, 34);
+            this.lblEnter.Size = new System.Drawing.Size(194, 34);
             this.lblEnter.TabIndex = 0;
             this.lblEnter.Text = "ВХОД";
             this.lblEnter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tbEntetMax
+            // tbEnterMax
             // 
             this.tbEnterMax.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbEnterMax.Location = new System.Drawing.Point(299, 3);
-            this.tbEnterMax.Name = "tbEntetMax";
-            this.tbEnterMax.Size = new System.Drawing.Size(211, 27);
+            this.tbEnterMax.Location = new System.Drawing.Point(359, 3);
+            this.tbEnterMax.Name = "tbEnterMax";
+            this.tbEnterMax.Size = new System.Drawing.Size(151, 27);
             this.tbEnterMax.TabIndex = 1;
             // 
             // lblHelp
@@ -213,7 +262,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 173);
+            this.ClientSize = new System.Drawing.Size(513, 207);
             this.Controls.Add(this.tlpMain);
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -225,6 +274,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Настройки бота";
             this.tlpMain.ResumeLayout(false);
+            this.tlpReconnect.ResumeLayout(false);
+            this.tlpReconnect.PerformLayout();
             this.tlpExit.ResumeLayout(false);
             this.tlpExit.PerformLayout();
             this.tlpButtons.ResumeLayout(false);
@@ -249,5 +300,9 @@
         private System.Windows.Forms.Label lblEnter;
         private System.Windows.Forms.TextBox tbEnterMax;
         private System.Windows.Forms.Label lblHelp;
+        private System.Windows.Forms.TableLayoutPanel tlpReconnect;
+        private System.Windows.Forms.TextBox tbReconnectMin;
+        private System.Windows.Forms.Label lblReconnect;
+        private System.Windows.Forms.TextBox tbReconnectMax;
     }
 }
