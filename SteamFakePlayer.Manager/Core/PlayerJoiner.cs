@@ -30,6 +30,8 @@ namespace SteamFakePlayer.Manager.Core
 
         private Timeout _connectingTask, _disconnectingTask;
 
+        public bool BlockReconnect;
+
         public PlayerJoiner(BotAccountData account, ServerData server)
         {
             _account = account;
@@ -97,6 +99,7 @@ namespace SteamFakePlayer.Manager.Core
 
         internal void ConnectWithSettingsDelay()
         {
+            BlockReconnect = false;
             var delay = 1000 * Rand.Int32(_server.BotOptions.EnterMin, _server.BotOptions.EnterMax);
             ConnectWithDelay(delay);
         }
@@ -133,6 +136,7 @@ namespace SteamFakePlayer.Manager.Core
         {
             if (State != ConnectionState.Disconnected)
             {
+                BlockReconnect = true;
                 KillJoiner();
             }
         }
@@ -181,14 +185,25 @@ namespace SteamFakePlayer.Manager.Core
             else if (e.Data.Contains("Соеденение с игровым сервером разорвано: Connection Attempt Failed"))
             {
                 OnDisconnectedFromServer("Connection Attempt Failed");
+                Reconnect();
             }
             else if (e.Data.Contains("От игрового сервера получена причина дисконнекта: Server Restarting"))
             {
                 OnDisconnectedFromServer("Server Restarting");
+                Reconnect();
             }
 
             Console.WriteLine($"[{Account.Username}] {e.Data}");
         }
+
+        internal void Reconnect()
+        {
+            if (BlockReconnect == false)
+            {
+                KillJoiner();
+                var delay = 1000 * Rand.Int32(_server.BotOptions.ReconnectMin, _server.BotOptions.ReconnectMax);
+                ConnectWithDelay(delay);
+            }
         }
 
         protected virtual string GenerateJoinerArguments()
