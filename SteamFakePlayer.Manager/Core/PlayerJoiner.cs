@@ -140,6 +140,10 @@ namespace SteamFakePlayer.Manager.Core
             {
                 OnDisconnectedFromServer("Connection Attempt Failed");
             }
+            else if (e.Data.Contains("От игрового сервера получена причина дисконнекта: Server Restarting"))
+            {
+                OnDisconnectedFromServer("Server Restarting");
+            }
 
             //Console.WriteLine(e.Data);
         }
