@@ -112,7 +112,7 @@ namespace SteamFakePlayer.Manager.Core
             }
         }
 
-        private void ChangeTask(ref Timeout currentTimeout, Timeout newTimeout)
+        private void ReplaceTask(ref Timeout currentTimeout, Timeout newTimeout)
         {
             if (currentTimeout != null)
             {
