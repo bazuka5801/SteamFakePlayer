@@ -109,7 +109,8 @@ namespace SteamFakePlayer.Manager
 
             var checker = new ServerChecker(_serverData.Bots[0], _serverData);
             checker.Callback += OnServerValidatingResult;
-            checker.Join();
+            checker.BlockReconnect = true;
+            checker.ConnectWithDelay(10);
         }
 
         private void OnServerValidatingResult(bool success, string data)
