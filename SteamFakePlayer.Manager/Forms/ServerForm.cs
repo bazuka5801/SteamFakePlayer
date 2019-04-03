@@ -13,7 +13,6 @@ namespace SteamFakePlayer.Manager
     {
         private readonly ServerCore _serverCore;
         private readonly ServerData _serverData;
-        private bool _validated;
 
         public ServerForm(ServerData serverdata)
         {
@@ -127,7 +126,6 @@ namespace SteamFakePlayer.Manager
                 return;
             }
 
-            _validated = true;
             _serverData.DisplayName = data.Truncate(30);
             DataManager.Save();
             MessageUtils.Info($"Соединение с {_serverData.DisplayName} успешно установлено!");
