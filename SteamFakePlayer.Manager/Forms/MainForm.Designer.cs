@@ -49,9 +49,19 @@
             this.menuStripFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripSettingsJoinerPath = new System.Windows.Forms.ToolStripMenuItem();
+            this.gbPlayers = new System.Windows.Forms.GroupBox();
+            this.btnLoadAccountsFile = new System.Windows.Forms.Button();
+            this.cbShowAccounts = new System.Windows.Forms.CheckBox();
+            this.tbAccounts = new System.Windows.Forms.TextBox();
+            this.lblLoaded = new System.Windows.Forms.Label();
+            this.lblLoadedCaption = new System.Windows.Forms.Label();
+            this.btnBotOptions = new System.Windows.Forms.Button();
+            this.btnConnectBots = new System.Windows.Forms.Button();
+            this.btnDisconnectBots = new System.Windows.Forms.Button();
             this.gbServerList.SuspendLayout();
             this.gbLicence.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            this.gbPlayers.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblInfo
@@ -61,7 +71,7 @@
             this.lblInfo.Location = new System.Drawing.Point(18, 24);
             this.lblInfo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(375, 41);
+            this.lblInfo.Size = new System.Drawing.Size(671, 41);
             this.lblInfo.TabIndex = 0;
             this.lblInfo.Text = "Программа: SteamFakePlayer\r\nРазработчик: bazuka5801";
             // 
@@ -229,7 +239,7 @@
             this.menuStripSettings});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(407, 24);
+            this.menuStrip.Size = new System.Drawing.Size(703, 24);
             this.menuStrip.TabIndex = 7;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -254,11 +264,124 @@
             this.menuStripSettingsJoinerPath.Text = "Указать путь до Joiner";
             this.menuStripSettingsJoinerPath.Click += new System.EventHandler(this.menuStripSettingsJoinerPath_Click);
             // 
+            // gbPlayers
+            // 
+            this.gbPlayers.Controls.Add(this.lblLoaded);
+            this.gbPlayers.Controls.Add(this.lblLoadedCaption);
+            this.gbPlayers.Controls.Add(this.btnLoadAccountsFile);
+            this.gbPlayers.Controls.Add(this.cbShowAccounts);
+            this.gbPlayers.Controls.Add(this.tbAccounts);
+            this.gbPlayers.Location = new System.Drawing.Point(402, 28);
+            this.gbPlayers.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.gbPlayers.Name = "gbPlayers";
+            this.gbPlayers.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.gbPlayers.Size = new System.Drawing.Size(288, 308);
+            this.gbPlayers.TabIndex = 8;
+            this.gbPlayers.TabStop = false;
+            this.gbPlayers.Text = "Список аккаунтов (login:pass)";
+            // 
+            // btnLoadAccountsFile
+            // 
+            this.btnLoadAccountsFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLoadAccountsFile.Location = new System.Drawing.Point(8, 242);
+            this.btnLoadAccountsFile.Name = "btnLoadAccountsFile";
+            this.btnLoadAccountsFile.Size = new System.Drawing.Size(265, 27);
+            this.btnLoadAccountsFile.TabIndex = 3;
+            this.btnLoadAccountsFile.Text = "Загрузить файл";
+            this.btnLoadAccountsFile.UseVisualStyleBackColor = true;
+            this.btnLoadAccountsFile.Click += new System.EventHandler(this.btnLoadAccountsFile_Click);
+            // 
+            // cbShowAccounts
+            // 
+            this.cbShowAccounts.AutoSize = true;
+            this.cbShowAccounts.Location = new System.Drawing.Point(10, 22);
+            this.cbShowAccounts.Name = "cbShowAccounts";
+            this.cbShowAccounts.Size = new System.Drawing.Size(103, 22);
+            this.cbShowAccounts.TabIndex = 2;
+            this.cbShowAccounts.Text = "Показать";
+            this.cbShowAccounts.UseVisualStyleBackColor = true;
+            this.cbShowAccounts.CheckedChanged += new System.EventHandler(this.cbShowAccounts_CheckedChanged);
+            // 
+            // tbAccounts
+            // 
+            this.tbAccounts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbAccounts.Location = new System.Drawing.Point(10, 51);
+            this.tbAccounts.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.tbAccounts.Multiline = true;
+            this.tbAccounts.Name = "tbAccounts";
+            this.tbAccounts.PasswordChar = '*';
+            this.tbAccounts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbAccounts.Size = new System.Drawing.Size(265, 182);
+            this.tbAccounts.TabIndex = 1;
+            this.tbAccounts.Text = "fhytj";
+            // 
+            // lblLoaded
+            // 
+            this.lblLoaded.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblLoaded.AutoSize = true;
+            this.lblLoaded.Location = new System.Drawing.Point(197, 279);
+            this.lblLoaded.Name = "lblLoaded";
+            this.lblLoaded.Size = new System.Drawing.Size(18, 18);
+            this.lblLoaded.TabIndex = 5;
+            this.lblLoaded.Text = "0";
+            // 
+            // lblLoadedCaption
+            // 
+            this.lblLoadedCaption.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblLoadedCaption.AutoSize = true;
+            this.lblLoadedCaption.Location = new System.Drawing.Point(8, 279);
+            this.lblLoadedCaption.Name = "lblLoadedCaption";
+            this.lblLoadedCaption.Size = new System.Drawing.Size(195, 18);
+            this.lblLoadedCaption.TabIndex = 4;
+            this.lblLoadedCaption.Text = "Загружено аккаунтов:";
+            // 
+            // btnBotOptions
+            // 
+            this.btnBotOptions.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnBotOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnBotOptions.Location = new System.Drawing.Point(402, 403);
+            this.btnBotOptions.Name = "btnBotOptions";
+            this.btnBotOptions.Size = new System.Drawing.Size(288, 39);
+            this.btnBotOptions.TabIndex = 9;
+            this.btnBotOptions.Text = "Настроить бота";
+            this.btnBotOptions.UseVisualStyleBackColor = true;
+            this.btnBotOptions.Click += new System.EventHandler(this.btnBotOptions_Click);
+            // 
+            // btnConnectBots
+            // 
+            this.btnConnectBots.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnConnectBots.ForeColor = System.Drawing.Color.Green;
+            this.btnConnectBots.Location = new System.Drawing.Point(402, 351);
+            this.btnConnectBots.Name = "btnConnectBots";
+            this.btnConnectBots.Size = new System.Drawing.Size(141, 46);
+            this.btnConnectBots.TabIndex = 10;
+            this.btnConnectBots.Text = "Запустить стадо";
+            this.btnConnectBots.UseVisualStyleBackColor = true;
+            this.btnConnectBots.Click += new System.EventHandler(this.btnConnectBots_Click);
+            // 
+            // btnDisconnectBots
+            // 
+            this.btnDisconnectBots.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDisconnectBots.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnDisconnectBots.Location = new System.Drawing.Point(549, 351);
+            this.btnDisconnectBots.Name = "btnDisconnectBots";
+            this.btnDisconnectBots.Size = new System.Drawing.Size(140, 46);
+            this.btnDisconnectBots.TabIndex = 11;
+            this.btnDisconnectBots.Text = "Идём баиньки";
+            this.btnDisconnectBots.UseVisualStyleBackColor = true;
+            this.btnDisconnectBots.Click += new System.EventHandler(this.btnDisconnectBots_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(407, 454);
+            this.ClientSize = new System.Drawing.Size(703, 454);
+            this.Controls.Add(this.btnDisconnectBots);
+            this.Controls.Add(this.btnConnectBots);
+            this.Controls.Add(this.btnBotOptions);
+            this.Controls.Add(this.gbPlayers);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.llRustyCode);
             this.Controls.Add(this.gbLicence);
@@ -280,6 +403,8 @@
             this.gbLicence.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.gbPlayers.ResumeLayout(false);
+            this.gbPlayers.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,6 +432,15 @@
         private System.Windows.Forms.ToolStripMenuItem menuStripFile;
         private System.Windows.Forms.ToolStripMenuItem menuStripSettings;
         private System.Windows.Forms.ToolStripMenuItem menuStripSettingsJoinerPath;
+        private System.Windows.Forms.GroupBox gbPlayers;
+        private System.Windows.Forms.Button btnLoadAccountsFile;
+        private System.Windows.Forms.CheckBox cbShowAccounts;
+        private System.Windows.Forms.TextBox tbAccounts;
+        private System.Windows.Forms.Label lblLoaded;
+        private System.Windows.Forms.Label lblLoadedCaption;
+        private System.Windows.Forms.Button btnBotOptions;
+        private System.Windows.Forms.Button btnConnectBots;
+        private System.Windows.Forms.Button btnDisconnectBots;
     }
 }
 

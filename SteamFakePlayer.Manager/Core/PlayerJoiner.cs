@@ -17,11 +17,11 @@ namespace SteamFakePlayer.Manager.Core
     }
 
     internal delegate void StateChanged(ConnectionState state);
+    internal delegate void Disconnected(PlayerJoiner joiner, string reason);
 
     internal abstract class PlayerJoiner
     {
-        private readonly BotAccountData _account;
-        private readonly ServerData _server;
+        private ServerCore _server;
         private Process _joinerProcess;
 
         private bool _running;
@@ -32,10 +32,9 @@ namespace SteamFakePlayer.Manager.Core
 
         public bool BlockReconnect;
 
-        public PlayerJoiner(BotAccountData account, ServerData server)
+        public PlayerJoiner(BotAccountData account)
         {
-            _account = account;
-            _server = server;
+            Account = account;
         }
 
         internal ConnectionState State
@@ -51,16 +50,20 @@ namespace SteamFakePlayer.Manager.Core
             }
         }
 
-        public BotAccountData Account => _account;
+        public void SetServer(ServerCore server)
+        {
+            _server = server;
+        }
+
+        public ServerCore GetServer() => _server;
+
+        public BotAccountData Account { get; }
 
         internal event StateChanged StateChanged;
 
         protected virtual void OnStateChanged(ConnectionState state)
         {
-            if (StateChanged != null)
-            {
-                StateChanged(state);
-            }
+            StateChanged?.Invoke(state);
         }        
 
         private void RunJoiner()
@@ -76,7 +79,7 @@ namespace SteamFakePlayer.Manager.Core
                 StandardErrorEncoding = Encoding.UTF8,
                 RedirectStandardError = true,
                 RedirectStandardOutput = true,
-                WorkingDirectory = Path.GetDirectoryName(DataManager.Data.JoinerFile)
+                //WorkingDirectory = Path.GetDirectoryName(DataManager.Data.JoinerFile)
             };
 
             _joinerProcess = Process.Start(processInfo);
@@ -97,11 +100,12 @@ namespace SteamFakePlayer.Manager.Core
             Console.WriteLine(e.Data);
         }
 
-        internal void ConnectWithSettingsDelay()
+        internal int ConnectWithSettingsDelay()
         {
             BlockReconnect = false;
-            var delay = 1000 * Rand.Int32(_server.BotOptions.EnterMin, _server.BotOptions.EnterMax);
+            var delay = 1000 * Rand.Int32(DataManager.Data.BotOptions.EnterMin, DataManager.Data.BotOptions.EnterMax);
             ConnectWithDelay(delay);
+            return delay;
         }
 
         internal void ConnectWithDelay(int delay)
@@ -121,10 +125,11 @@ namespace SteamFakePlayer.Manager.Core
             Task.Run(() => RunJoiner());
         }
 
-        internal void DisconnectWithSettingsDelay()
+        internal int DisconnectWithSettingsDelay()
         {
-            var delay = 1000 * Rand.Int32(_server.BotOptions.ExitMin, _server.BotOptions.ExitMax);
+            var delay = 1000 * Rand.Int32(DataManager.Data.BotOptions.ExitMin, DataManager.Data.BotOptions.ExitMax);
             DisconnectWithDelay(delay);
+            return delay;
         }
 
         internal void DisconnectWithDelay(int delay)
@@ -161,13 +166,13 @@ namespace SteamFakePlayer.Manager.Core
         protected virtual void OnConnectedToServer(string servername)
         {
             State = ConnectionState.Playing;
-            Console.WriteLine($"'{_account.Username}' connected to '{_server.DisplayName}'");
+            Console.WriteLine($"'{Account.Username}' connected to '{_server.Data.DisplayName}'");
         }
 
         protected virtual void OnDisconnectedFromServer(string reason)
         {
             State = ConnectionState.Disconnected;
-            Console.WriteLine($"'{_account.Username}' disconnected from '{_server.DisplayName}' reason: {reason}");
+            Console.WriteLine($"'{Account.Username}' disconnected from '{_server.Data.DisplayName}' reason: {reason}");
         }
 
         private void Joiner_OutputDataReceived(object sender, DataReceivedEventArgs e)
@@ -191,6 +196,10 @@ namespace SteamFakePlayer.Manager.Core
             {
                 OnDisconnectedFromServer("Server Restarting");
                 Reconnect();
+            }else if (e.Data.EndsWith("[GOSLEEP]"))
+            {
+                _server.StartSleeping();
+                BotSpreader.Instance.PushPlayer((BotPlayer)this);
             }
 
             Console.WriteLine($"[{Account.Username}] {e.Data}");
@@ -201,17 +210,17 @@ namespace SteamFakePlayer.Manager.Core
             if (BlockReconnect == false)
             {
                 KillJoiner();
-                var delay = 1000 * Rand.Int32(_server.BotOptions.ReconnectMin, _server.BotOptions.ReconnectMax);
+                var delay = 1000 * Rand.Int32(DataManager.Data.BotOptions.ReconnectMin, DataManager.Data.BotOptions.ReconnectMax);
                 ConnectWithDelay(delay);
             }
         }
 
         protected virtual string GenerateJoinerArguments()
         {
-            return $"\"{_account.Username}\" " +
-                   $"\"{_account.Password}\" " +
-                   $"\"{_server.IP}\" " +
-                   $"\"{_server.Port}\" \" \" " +
+            return $"\"{Account.Username}\" " +
+                   $"\"{Account.Password}\" " +
+                   $"\"{_server.Data.IP}\" " +
+                   $"\"{_server.Data.Port}\" \" \" " +
                    $"\"-pid\" \"{Process.GetCurrentProcess().Id}\" "
 #if !DEBUG
                    + $"\"-hide\" "

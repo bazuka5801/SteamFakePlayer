@@ -11,32 +11,46 @@ namespace SteamFakePlayer.Manager.Core
 
     public delegate void ServerStatsChanged(ServerStats stats);
 
-    public class ServerCore
+    internal class ServerCore
     {
-        private readonly List<BotPlayer> _players = new List<BotPlayer>();
-        private readonly ServerData _serverData;
         private readonly ServerStats _serverStats;
+
+        public readonly List<BotPlayer> Players = new List<BotPlayer>();
+
+        public ServerData Data { get; }        
+
+        public bool IsFull;
+
+        public void StartSleeping()
+        {
+            IsFull = true;
+            new Timeout(60000, () =>
+            {
+                IsFull = false;
+            });
+        }
 
         public ServerCore(ServerData serverData)
         {
-            _serverData = serverData;
+            Data = serverData;
             _serverStats = new ServerStats();
-
-            SetupPlayers();
         }
 
         public bool IsRunning { get; private set; }
 
         public event ServerStatsChanged StatsChanged;
 
-        public void SetupPlayers()
+        public int AddPlayer(BotPlayer player)
         {
-            foreach (var account in _serverData.Bots)
-            {
-                var bot = new BotPlayer(account, _serverData);
-                bot.StateChanged += OnBot_StateChanged;
-                _players.Add(bot);
-            }
+            Players.Add(player);
+            player.SetServer(this);
+            return player.ConnectWithSettingsDelay();
+        }
+
+        public int RemovePlayer(BotPlayer player)
+        {
+            Players.Remove(player);
+            return player.DisconnectWithSettingsDelay();
         }
 
         private void OnBot_StateChanged(ConnectionState state)
@@ -53,7 +67,7 @@ namespace SteamFakePlayer.Manager.Core
             }
         }
 
-        internal void ForEach(Action<BotPlayer> action) => _players.ForEach(action);
+        internal void ForEach(Action<BotPlayer> action) => Players.ForEach(action);
 
         internal bool ConnectBots()
         {

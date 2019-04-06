@@ -4,7 +4,7 @@ namespace SteamFakePlayer.Manager.Core
 {
     internal class BotPlayer : PlayerJoiner
     {
-        public BotPlayer(BotAccountData account, ServerData server) : base(account, server)
+        public BotPlayer(BotAccountData account) : base(account)
         {
         }
 

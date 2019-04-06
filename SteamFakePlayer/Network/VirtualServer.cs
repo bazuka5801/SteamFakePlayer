@@ -53,7 +53,7 @@ namespace SteamFakePlayer.Network
 
         private void CycleNetwork()
         {
-            BaseClient.Cycle();
+            BaseClient?.Cycle();
         }
 
         #endregion
@@ -171,6 +171,13 @@ namespace SteamFakePlayer.Network
 
                     break;
                 case Message.Type.ConsoleCommand:
+                    string command = packet.read.String();
+                    if (command == "sfk.gosleep")
+                    {
+                        BaseClient.Disconnect("", true);
+                        ConsoleSystem.Log("[GOSLEEP]");
+                        Framework.Quit();
+                    }
                     break;
                 case Message.Type.DisconnectReason:
                     packet.read.Position = 1L;

@@ -81,7 +81,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\BotPlayer.cs" />
-    <Compile Include="Core\ServerChecker.cs" />
+    <Compile Include="Core\BotPool.cs" />
+    <Compile Include="Core\BotSpreader.cs" />
     <Compile Include="Core\ServerCore.cs" />
     <Compile Include="Data\BotAccountData.cs" />
     <Compile Include="Data\BotOptionsData.cs" />

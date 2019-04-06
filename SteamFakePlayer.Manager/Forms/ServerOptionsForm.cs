@@ -52,16 +52,10 @@ namespace SteamFakePlayer.Manager
         {
             Close();
         }
-
-        private void btnBotOptions_Click(object sender, EventArgs e)
-        {
-            BotOptionsModel.TryGetModel(_model.BotOptions);
-        }
     }
 
     public class ServerOptionsModel : DialogModel<ServerOptionsModel, ServerOptionsForm>
     {
-        public BotOptionsModel BotOptions = new BotOptionsModel();
         public string IP;
         public int Port;
     }
