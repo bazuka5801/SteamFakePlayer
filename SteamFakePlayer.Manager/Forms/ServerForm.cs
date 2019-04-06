@@ -11,7 +11,8 @@ namespace SteamFakePlayer.Manager
 
         public ServerForm(ServerCore server)
         {
-            _server.StatsChanged += OnServerStatsChanged;
+            _server = server;
+            server.StatsChanged += OnServerStatsChanged;
 
             InitializeComponent();
 
