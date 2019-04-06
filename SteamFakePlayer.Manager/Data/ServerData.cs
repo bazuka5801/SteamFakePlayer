@@ -14,5 +14,8 @@ namespace SteamFakePlayer.Manager.Data
 
         [ProtoMember(2)]
         public int Port;
+
+        [ProtoMember(4)]
+        public int ImportantIndex;
     }
 }

@@ -39,28 +39,33 @@
             this.tlpButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.tlpIndex = new System.Windows.Forms.TableLayoutPanel();
+            this.lblIndex = new System.Windows.Forms.Label();
+            this.tbIndex = new System.Windows.Forms.TextBox();
             this.tlpMain.SuspendLayout();
             this.tlpPort.SuspendLayout();
             this.tlpIP.SuspendLayout();
             this.tlpButtons.SuspendLayout();
+            this.tlpIndex.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpMain
             // 
             this.tlpMain.ColumnCount = 1;
             this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpMain.Controls.Add(this.tlpPort, 0, 1);
+            this.tlpMain.Controls.Add(this.tlpIndex, 0, 2);
             this.tlpMain.Controls.Add(this.tlpIP, 0, 0);
-            this.tlpMain.Controls.Add(this.tlpButtons, 0, 2);
+            this.tlpMain.Controls.Add(this.tlpButtons, 0, 3);
+            this.tlpMain.Controls.Add(this.tlpPort, 0, 1);
             this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMain.Location = new System.Drawing.Point(0, 0);
             this.tlpMain.Name = "tlpMain";
-            this.tlpMain.RowCount = 3;
+            this.tlpMain.RowCount = 4;
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpMain.Size = new System.Drawing.Size(347, 128);
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpMain.Size = new System.Drawing.Size(347, 168);
             this.tlpMain.TabIndex = 2;
             // 
             // tlpPort
@@ -70,7 +75,6 @@
             this.tlpPort.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.06837F));
             this.tlpPort.Controls.Add(this.lblPort, 0, 0);
             this.tlpPort.Controls.Add(this.tbPort, 1, 0);
-            this.tlpPort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpPort.Location = new System.Drawing.Point(3, 43);
             this.tlpPort.Name = "tlpPort";
             this.tlpPort.RowCount = 1;
@@ -139,7 +143,7 @@
             this.tlpButtons.Controls.Add(this.btnCancel, 1, 0);
             this.tlpButtons.Controls.Add(this.btnSave, 0, 0);
             this.tlpButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpButtons.Location = new System.Drawing.Point(0, 80);
+            this.tlpButtons.Location = new System.Drawing.Point(0, 120);
             this.tlpButtons.Margin = new System.Windows.Forms.Padding(0);
             this.tlpButtons.Name = "tlpButtons";
             this.tlpButtons.RowCount = 1;
@@ -174,11 +178,44 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // tlpIndex
+            // 
+            this.tlpIndex.ColumnCount = 2;
+            this.tlpIndex.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.93162F));
+            this.tlpIndex.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.06837F));
+            this.tlpIndex.Controls.Add(this.lblIndex, 0, 0);
+            this.tlpIndex.Controls.Add(this.tbIndex, 1, 0);
+            this.tlpIndex.Location = new System.Drawing.Point(3, 83);
+            this.tlpIndex.Name = "tlpIndex";
+            this.tlpIndex.RowCount = 1;
+            this.tlpIndex.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpIndex.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tlpIndex.Size = new System.Drawing.Size(341, 34);
+            this.tlpIndex.TabIndex = 3;
+            // 
+            // lblIndex
+            // 
+            this.lblIndex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblIndex.Location = new System.Drawing.Point(3, 0);
+            this.lblIndex.Name = "lblIndex";
+            this.lblIndex.Size = new System.Drawing.Size(75, 34);
+            this.lblIndex.TabIndex = 0;
+            this.lblIndex.Text = "INDEX";
+            this.lblIndex.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbIndex
+            // 
+            this.tbIndex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbIndex.Location = new System.Drawing.Point(84, 3);
+            this.tbIndex.Name = "tbIndex";
+            this.tbIndex.Size = new System.Drawing.Size(254, 27);
+            this.tbIndex.TabIndex = 1;
+            // 
             // ServerOptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 128);
+            this.ClientSize = new System.Drawing.Size(347, 168);
             this.Controls.Add(this.tlpMain);
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -195,6 +232,8 @@
             this.tlpIP.ResumeLayout(false);
             this.tlpIP.PerformLayout();
             this.tlpButtons.ResumeLayout(false);
+            this.tlpIndex.ResumeLayout(false);
+            this.tlpIndex.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -211,5 +250,8 @@
         private System.Windows.Forms.TableLayoutPanel tlpButtons;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TableLayoutPanel tlpIndex;
+        private System.Windows.Forms.Label lblIndex;
+        private System.Windows.Forms.TextBox tbIndex;
     }
 }

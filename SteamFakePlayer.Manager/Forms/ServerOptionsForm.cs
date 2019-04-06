@@ -20,6 +20,7 @@ namespace SteamFakePlayer.Manager
         {
             tbIP.Text = model.IP;
             tbPort.Text = model.Port.ToString();
+            tbIndex.Text = model.ImportantIndex.ToString();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -42,8 +43,15 @@ namespace SteamFakePlayer.Manager
                 return;
             }
 
+            if (int.TryParse(tbIndex.Text, out var index) == false)
+            {
+                MessageUtils.Error("Index не является числом!");
+                return;
+            }
+
             _model.IP = tbIP.Text;
             _model.Port = port;
+            _model.ImportantIndex = index;
             _model.Success = true;
             Close();
         }
@@ -58,5 +66,6 @@ namespace SteamFakePlayer.Manager
     {
         public string IP;
         public int Port;
+        public int ImportantIndex;
     }
 }

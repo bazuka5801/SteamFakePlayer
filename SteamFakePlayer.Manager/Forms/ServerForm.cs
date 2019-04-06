@@ -63,13 +63,15 @@ namespace SteamFakePlayer.Manager
             var model = new ServerOptionsModel
             {
                 IP = _server.Data.IP,
-                Port = _server.Data.Port
+                Port = _server.Data.Port,
+                ImportantIndex = _server.Data.ImportantIndex
             };
 
             if (ServerOptionsModel.TryGetModel(model))
             {
                 _server.Data.IP = model.IP;
                 _server.Data.Port = model.Port;
+                _server.Data.ImportantIndex = model.ImportantIndex;
                 
                 DataManager.Save();
             }

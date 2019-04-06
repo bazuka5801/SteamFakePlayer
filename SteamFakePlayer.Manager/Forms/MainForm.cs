@@ -35,8 +35,8 @@ namespace SteamFakePlayer.Manager
             {
                 lbServers.Items.Add(
                     string.IsNullOrEmpty(server.DisplayName)
-                        ? $"{server.IP}:{server.Port}"
-                        : $"{server.DisplayName} [{server.IP}:{server.Port}]"
+                        ? $"<{server.ImportantIndex}> {server.IP}:{server.Port}"
+                        : $"<{server.ImportantIndex}> {server.DisplayName} [{server.IP}:{server.Port}]"
                 );
             }
 
