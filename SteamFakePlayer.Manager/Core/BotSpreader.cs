@@ -26,7 +26,7 @@ namespace SteamFakePlayer.Manager.Core
             {
                 if (SpreaderTimer == null)
                 {
-                    SpreaderTimer = new Timeout(1000, SpreaderTick);
+                    SpreaderTimer = new Timeout(10000, SpreaderTick);
                     SpreaderTimer.AutoReset = true;
                 }
 
@@ -81,14 +81,33 @@ namespace SteamFakePlayer.Manager.Core
                 return;
             }
 
-            foreach (var server in _servers)
+            ServerCore prioritizedServer = _servers
+                .Where(p => p.IsFull == false)
+                .OrderByDescending(p => p.Data.ImportantIndex)
+                .FirstOrDefault();
+            if (prioritizedServer != null)
             {
                 while (_pool.Get(out var bot))
                 {
-                    if (server.IsFull == false)
+                    prioritizedServer.AddPlayer(bot);
+                    break;
+                }
+
+
+                var donorServers = _servers
+                    .Where(p => p.Data.ImportantIndex < prioritizedServer.Data.ImportantIndex)
+                    .OrderByDescending(p => p.Data.ImportantIndex);
+
+                foreach (var server in donorServers)
+                {
+                    var bot = server.Players.FirstOrDefault();
+                    if (bot != null)
                     {
-                        server.AddPlayer(bot);
-                        break;
+                        new Timeout(bot.DisconnectWithSettingsDelay(), () =>
+                        {
+                            bot.GetServer().RemovePlayer(bot);
+                            prioritizedServer.AddPlayer(bot);
+                        });
                     }
                 }
             }
